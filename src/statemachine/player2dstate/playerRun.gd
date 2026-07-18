@@ -25,8 +25,8 @@ func process_physics(delta) -> State:
 	return null
 
 func process(_delta) -> State:
-		# probably a better way to do this but idc
-	parent.animated_sprite.set_speed_scale(1.25)
+	# probably a better way to do this but idc
+	parent.animated_sprite.set_speed_scale(1.75)
 	
 	if Input.is_action_pressed("move_right"):
 		parent.animated_sprite.flip_h = false

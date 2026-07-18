@@ -6,6 +6,7 @@ class_name labyrinth extends TileMapLayer
 enum cell_state {UNVISITED, POSSIBLE, VISITED}
 # didn't want to hardcode this but can't export it and onready it at the same time afaik
 @onready var size: int = 51
+@onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var aster = preload("res://common/aster/aster.tscn")
 var minotaur = preload("res://common/minotaur/minotaur.tscn")
@@ -18,10 +19,12 @@ func inst(pos: Vector2, object: Resource):
 func _ready() -> void:
 	generate()
 	# no idea if this is actually centered on the tile but idc at this point
-	#inst(Vector2((floor(size / 2) * 10) - 2, (floor(size / 2) * 10) - 2), aster)
-	#inst(Vector2(150, 150), minotaur)
+	inst(Vector2((floor(size / 2) * 10) - 2.5, (floor(size / 2) * 10) - 2.5), aster)
+	inst(Vector2(150, 150), minotaur)
 
 func generate() -> labyrinth:
+	# replace this later lmao
+	rng.seed = hash("gaming")
 	var map: Array = initialize_maze()
 	hunt_and_kill(map)
 	find_exit(map)
@@ -54,7 +57,7 @@ func random_coordinate(map_size: int) -> Array:
 	# aka first and last rows + index = 0 and index = map_size - 1
 	# and also within a valid cell (odd number)
 	
-	return [(randi_range(0, floor(map_size - 3) / 2) * 2) + 1, (randi_range(0, floor(map_size - 3) / 2) * 2) + 1]
+	return [(rng.randi_range(0, floor(map_size - 3) / 2) * 2) + 1, (rng.randi_range(0, floor(map_size - 3) / 2) * 2) + 1]
 
 func check_neighbors(coordinates: Array, map: Array, state: int, dist: int = 2) -> Array:
 	var possible_neighbors: Array = []
@@ -91,14 +94,15 @@ func hunt_and_kill(map: Array) -> Array:
 	while hunt_active:
 		var possible_unvisited: Array = check_neighbors(current_cell, map, cell_state.POSSIBLE)
 		if possible_unvisited.size() > 0:
-			var next_cell: Array = possible_unvisited.pick_random()
+			var next_cell: Array = possible_unvisited[rng.randi_range(0, possible_unvisited.size() - 1)]
 			map[next_cell[0]][next_cell[1]] = cell_state.VISITED
 			map[next_cell[0] + ((current_cell[0] - next_cell[0]) / 2)][next_cell[1] + ((current_cell[1] - next_cell[1]) / 2)] = cell_state.VISITED
 			current_cell = next_cell
 		else:
 			var hunt_cell: Array = hunt(map)
 			if hunt_cell.size() > 0:
-				var neighbor_cell: Array = check_neighbors(hunt_cell, map, cell_state.VISITED).pick_random()
+				var possible_neighbors: Array = check_neighbors(hunt_cell, map, cell_state.VISITED)
+				var neighbor_cell: Array = possible_neighbors[rng.randi_range(0, possible_neighbors.size() - 1)]
 				map[hunt_cell[0]][hunt_cell[1]] = cell_state.VISITED
 				map[hunt_cell[0] + ((neighbor_cell[0] - hunt_cell[0]) / 2)][hunt_cell[1] + ((neighbor_cell[1] - hunt_cell[1]) / 2)] = cell_state.VISITED
 				current_cell = hunt_cell
@@ -115,7 +119,7 @@ func find_exit(map: Array):
 			if map[i][j] == cell_state.VISITED and ((i == 1 or i == 49) or (j == 1 or j == 49)) and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
 				possible_exit.append([i, j])
 	
-	var exit_neighbor: Array = possible_exit.pick_random()
+	var exit_neighbor: Array = possible_exit[rng.randi_range(0, possible_exit.size() - 1)]
 	# this is the best i can be bothered to do it
 	if exit_neighbor[0] == 1:
 		map[0][exit_neighbor[1]] = cell_state.VISITED

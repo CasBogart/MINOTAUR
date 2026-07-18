@@ -31,11 +31,13 @@ cant get exit to work automatically so im taking a break
 230pm
 nevermind i got it working, actually taking a break now
 
+3pm
+maze is now seeded, still need to make seeds time/date-related but that can be a different problem later
+
 
 
 to add:
 scoring (decrease slowly over time, incentivizes speed)
-seeding of maze (necessary? could just load once on startup, not going to save progress anyway)
 minotaur model
 minotaur ai
 3d implementation
@@ -46,3 +48,4 @@ menu + ui + settings + whatever
 low contrast mode lol
 music + sfx
 can run on web
+rng from time/date
