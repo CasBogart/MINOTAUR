@@ -14,5 +14,6 @@ sources/0 = SubResource("TileSetAtlasSource_e2clf")
 
 [node name="Labyrinth" type="TileMapLayer" unique_id=800161411]
 tile_set = SubResource("TileSet_ilt5k")
+collision_enabled = false
 script = ExtResource("1_iepnh")
 metadata/_custom_type_script = "uid://dn56s3sxvwitd"

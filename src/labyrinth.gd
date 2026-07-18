@@ -7,16 +7,16 @@ enum cell_state {UNVISITED, POSSIBLE, VISITED}
 # didn't want to hardcode this but can't export it and onready it at the same time afaik
 @onready var size: int = 51
 
-#var aster = preload("res://common/aster/aster.tscn")
+var aster = preload("res://common/aster/aster.tscn")
 
-#func player_inst(pos):
-	#var asterinst = aster.instantiate()
-	#asterinst.position = pos
-	#add_child(asterinst)
+func player_inst(pos):
+	var asterinst = aster.instantiate()
+	asterinst.position = pos
+	add_child(asterinst)
 
 func _ready() -> void:
 	generate()
-	#player_inst(Vector2(10, 10))
+	player_inst(Vector2(100, 100))
 
 func generate() -> labyrinth:
 	var map: Array = initialize_maze()
