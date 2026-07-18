@@ -18,11 +18,14 @@ character spritesheet fixed, was a bit wonky before and would transition weird.
 4am
 maze collisions functional and applied automatically
 
+6am
+oughhhh im awake again, minotaur sprite created and working on navigation, flags and signalbus made singletons
+
 to add:
 scoring (decrease slowly over time, incentivizes speed)
 seeding of maze
 maze has exit
-minotaur sprite + model
+minotaur model
 minotaur ai
 3d implementation
 missions/flags/whatever (basic, no path, no icons, no map, 3d)

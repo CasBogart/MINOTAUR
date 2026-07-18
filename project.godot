@@ -28,6 +28,10 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/mode=3
 
+[global_group]
+
+minotarget="get his ass"
+
 [input]
 
 move_up={
@@ -56,6 +60,8 @@ move_right={
 2d_physics/layer_1="player"
 2d_physics/layer_2="maze"
 2d_physics/layer_3="wall"
+2d_navigation/layer_3="maze"
+2d_physics/layer_4="minotaur"
 
 [physics]
 
@@ -65,3 +71,4 @@ move_right={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cskeobi1svig4"]
+
+[ext_resource type="Texture2D" uid="uid://cuah1hw5303qd" path="res://common/minotaur/minotaur.png" id="1_7tlxx"]
+[ext_resource type="Script" uid="uid://db1iusrigr0mt" path="res://common/minotaur/minotaur.gd" id="1_xgclo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
+radius = 3.0
+height = 10.0
+
+[node name="Minotaur" type="CharacterBody2D" unique_id=1049601149]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_xgclo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=855484312]
+shape = SubResource("CapsuleShape2D_xgclo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1592149674]
+texture = ExtResource("1_7tlxx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1302296990]
+path_desired_distance = 1.0
+target_desired_distance = 1.0
+navigation_layers = 4
+path_postprocessing = 1
+simplify_path = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)

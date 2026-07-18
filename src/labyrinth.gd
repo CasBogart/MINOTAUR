@@ -8,15 +8,18 @@ enum cell_state {UNVISITED, POSSIBLE, VISITED}
 @onready var size: int = 51
 
 var aster = preload("res://common/aster/aster.tscn")
+var minotaur = preload("res://common/minotaur/minotaur.tscn")
 
-func player_inst(pos):
-	var asterinst = aster.instantiate()
-	asterinst.position = pos
-	add_child(asterinst)
+func inst(pos: Vector2, object: Resource):
+	var instance = object.instantiate()
+	instance.position = pos
+	add_child(instance)
 
 func _ready() -> void:
 	generate()
-	player_inst(Vector2(floor(size / 2), floor(size / 2)))
+	# no idea if this is actually centered on the tile but idc at this point
+	inst(Vector2((floor(size / 2) * 10) - 2, (floor(size / 2) * 10) - 2), aster)
+	inst(Vector2(150, 150), minotaur)
 
 func generate() -> labyrinth:
 	var map: Array = initialize_maze()
