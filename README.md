@@ -18,7 +18,6 @@ character spritesheet fixed, was a bit wonky before and would transition weird.
 to add:
 scoring (decrease slowly over time, incentivizes speed)
 seeding of maze
-maze autogenerates
 maze has exit
 minotaur sprite + model
 minotaur ai
@@ -29,3 +28,4 @@ high score tracker?
 menu + ui + settings + whatever
 low contrast mode lol
 music + sfx
+can run on web
