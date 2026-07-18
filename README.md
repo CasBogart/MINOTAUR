@@ -12,6 +12,9 @@ sprite sheet implemented, not yet animated, project set up + labyrinth code adde
 2am
 character animated and some labyrinth issues sorted out
 
+330am
+character spritesheet fixed, was a bit wonky before and would transition weird.
+
 to add:
 scoring (decrease slowly over time, incentivizes speed)
 seeding of maze
