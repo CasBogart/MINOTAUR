@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cskeobi1svig4"]
 
-[ext_resource type="Texture2D" uid="uid://cuah1hw5303qd" path="res://common/minotaur/minotaur.png" id="1_7tlxx"]
+[ext_resource type="Texture2D" uid="uid://bxqxqd41ywtc7" path="res://common/minotaur/minotaur.png" id="1_7tlxx"]
 [ext_resource type="Script" uid="uid://db1iusrigr0mt" path="res://common/minotaur/minotaur.gd" id="1_xgclo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
@@ -9,7 +9,7 @@ height = 10.0
 
 [node name="Minotaur" type="CharacterBody2D" unique_id=1049601149]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_xgclo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=855484312]

@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d24tbm5tfe8w7" path="res://common/aster/aster.gd" id="1_lwfef"]
 [ext_resource type="Texture2D" uid="uid://2sfnlefbermd" path="res://common/aster/aster_walk.png" id="2_vr4qn"]
+[ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="3_vr4qn"]
+[ext_resource type="Script" uid="uid://pr1klio7a1vg" path="res://src/statemachine/player2dstate/playerIdle.gd" id="4_syoci"]
+[ext_resource type="Script" uid="uid://d4ld1iaiciplk" path="res://src/statemachine/player2dstate/playerWalk.gd" id="5_aaelh"]
+[ext_resource type="Script" uid="uid://bwusqala3q71j" path="res://src/statemachine/player2dstate/playerRun.gd" id="6_w5ep6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_syoci"]
 radius = 11.0
@@ -110,7 +114,7 @@ animations = [{
 }]
 
 [node name="Aster" type="CharacterBody2D" unique_id=1215084856 groups=["minotarget"]]
-collision_mask = 12
+collision_mask = 4
 script = ExtResource("1_lwfef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645203980]
@@ -123,3 +127,26 @@ animation = &"walkside"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=930273896]
 zoom = Vector2(10, 10)
+
+[node name="StateMachine" type="Node" parent="." unique_id=350882783 node_paths=PackedStringArray("INITIAL_STATE")]
+script = ExtResource("3_vr4qn")
+INITIAL_STATE = NodePath("PlayerIdle")
+metadata/_custom_type_script = "uid://bmy4fljjiwts2"
+
+[node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=745987428 node_paths=PackedStringArray("WalkState", "RunState")]
+script = ExtResource("4_syoci")
+WalkState = NodePath("../PlayerWalk")
+RunState = NodePath("../PlayerRun")
+metadata/_custom_type_script = "uid://pr1klio7a1vg"
+
+[node name="PlayerWalk" type="Node" parent="StateMachine" unique_id=1612449066 node_paths=PackedStringArray("IdleState", "RunState")]
+script = ExtResource("5_aaelh")
+IdleState = NodePath("../PlayerIdle")
+RunState = NodePath("../PlayerRun")
+metadata/_custom_type_script = "uid://d4ld1iaiciplk"
+
+[node name="PlayerRun" type="Node" parent="StateMachine" unique_id=1433163896 node_paths=PackedStringArray("IdleState", "WalkState")]
+script = ExtResource("6_w5ep6")
+IdleState = NodePath("../PlayerIdle")
+WalkState = NodePath("../PlayerWalk")
+metadata/_custom_type_script = "uid://bwusqala3q71j"

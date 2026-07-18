@@ -21,15 +21,26 @@ maze collisions functional and applied automatically
 6am
 oughhhh im awake again, minotaur sprite created and working on navigation, flags and signalbus made singletons
 
+1130am
+i fell asleep again but made the player statemachine, should work now + added sprint mechanic
+rudimentary pathfinding algo is working, need to do minotaur state machine as well
+
+2pm
+cant get exit to work automatically so im taking a break
+
+230pm
+nevermind i got it working, actually taking a break now
+
+
+
 to add:
 scoring (decrease slowly over time, incentivizes speed)
-seeding of maze
-maze has exit
+seeding of maze (necessary? could just load once on startup, not going to save progress anyway)
 minotaur model
 minotaur ai
 3d implementation
-missions/flags/whatever (basic, no path, no icons, no map, 3d)
-lantern functionality
+missions/flags/whatever (basic, dark, no icons, no map, 3d)
+lantern functionality (this will have some delay but idc at this point)
 high score tracker?
 menu + ui + settings + whatever
 low contrast mode lol

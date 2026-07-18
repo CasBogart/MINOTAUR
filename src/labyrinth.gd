@@ -18,12 +18,13 @@ func inst(pos: Vector2, object: Resource):
 func _ready() -> void:
 	generate()
 	# no idea if this is actually centered on the tile but idc at this point
-	inst(Vector2((floor(size / 2) * 10) - 2, (floor(size / 2) * 10) - 2), aster)
-	inst(Vector2(150, 150), minotaur)
+	#inst(Vector2((floor(size / 2) * 10) - 2, (floor(size / 2) * 10) - 2), aster)
+	#inst(Vector2(150, 150), minotaur)
 
 func generate() -> labyrinth:
 	var map: Array = initialize_maze()
 	hunt_and_kill(map)
+	find_exit(map)
 	draw_map(map)
 	return self
 
@@ -55,20 +56,20 @@ func random_coordinate(map_size: int) -> Array:
 	
 	return [(randi_range(0, floor(map_size - 3) / 2) * 2) + 1, (randi_range(0, floor(map_size - 3) / 2) * 2) + 1]
 
-func check_neighbors(coordinates: Array, map: Array, state: int) -> Array:
+func check_neighbors(coordinates: Array, map: Array, state: int, dist: int = 2) -> Array:
 	var possible_neighbors: Array = []
 	
-	if (1 <= coordinates[0] - 2) and (map[coordinates[0] - 2][coordinates[1]] == state):
-		possible_neighbors.append([coordinates[0] - 2, coordinates[1]])
+	if (1 <= coordinates[0] - dist) and (map[coordinates[0] - dist][coordinates[1]] == state):
+		possible_neighbors.append([coordinates[0] - dist, coordinates[1]])
 	
-	if (coordinates[0] + 2 <= map.size() - 2) and (map[coordinates[0] + 2][coordinates[1]] == state):
-		possible_neighbors.append([coordinates[0] + 2, coordinates[1]])
+	if (coordinates[0] + dist <= map.size() - dist) and (map[coordinates[0] + dist][coordinates[1]] == state):
+		possible_neighbors.append([coordinates[0] + dist, coordinates[1]])
 	
-	if (1 <= coordinates[1] - 2) and (map[coordinates[0]][coordinates[1] - 2] == state):
-		possible_neighbors.append([coordinates[0], coordinates[1] - 2])
+	if (1 <= coordinates[1] - dist) and (map[coordinates[0]][coordinates[1] - dist] == state):
+		possible_neighbors.append([coordinates[0], coordinates[1] - dist])
 	
-	if (coordinates[1] + 2 <= map.size() - 2) and (map[coordinates[0]][coordinates[1] + 2] == state):
-		possible_neighbors.append([coordinates[0], coordinates[1] + 2])
+	if (coordinates[1] + dist <= map.size() - dist) and (map[coordinates[0]][coordinates[1] + dist] == state):
+		possible_neighbors.append([coordinates[0], coordinates[1] + dist])
 	
 	return possible_neighbors
 
@@ -105,6 +106,25 @@ func hunt_and_kill(map: Array) -> Array:
 				hunt_active = false
 	
 	return map
+
+func find_exit(map: Array):
+	var possible_exit: Array = []
+	
+	for i in map.size():
+		for j in map.size():
+			if map[i][j] == cell_state.VISITED and ((i == 1 or i == 49) or (j == 1 or j == 49)) and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
+				possible_exit.append([i, j])
+	
+	var exit_neighbor: Array = possible_exit.pick_random()
+	# this is the best i can be bothered to do it
+	if exit_neighbor[0] == 1:
+		map[0][exit_neighbor[1]] = cell_state.VISITED
+	elif exit_neighbor[0] == 49:
+		map[50][exit_neighbor[1]] = cell_state.VISITED
+	elif exit_neighbor[1] == 1:
+		map[exit_neighbor[0]][0] = cell_state.VISITED
+	elif exit_neighbor[1] == 49:
+		map[exit_neighbor[0]][50] = cell_state.VISITED
 
 func draw_map(map: Array):
 	for i in map.size():
