@@ -9,6 +9,9 @@ sprite sheet for character done importing into godot now + making project. prob 
 1230am
 sprite sheet implemented, not yet animated, project set up + labyrinth code added and made a singleton, gonna pace for a bit yayyyyyyyy
 
+2am
+character animated and some labyrinth issues sorted out
+
 to add:
 scoring (decrease slowly over time, incentivizes speed)
 seeding of maze
