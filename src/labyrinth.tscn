@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ci8o7gvwp1ibm"]
+
+[ext_resource type="Texture2D" uid="uid://no6712l1o4im" path="res://src/gen_tiles.png" id="1_bnp2g"]
+[ext_resource type="Script" uid="uid://dn56s3sxvwitd" path="res://src/labyrinth.gd" id="1_iepnh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2clf"]
+texture = ExtResource("1_bnp2g")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ilt5k"]
+sources/0 = SubResource("TileSetAtlasSource_e2clf")
+
+[node name="Labyrinth" type="TileMapLayer" unique_id=800161411]
+tile_set = SubResource("TileSet_ilt5k")
+script = ExtResource("1_iepnh")
+metadata/_custom_type_script = "uid://dn56s3sxvwitd"

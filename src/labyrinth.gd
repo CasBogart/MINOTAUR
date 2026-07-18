@@ -4,30 +4,42 @@ class_name labyrinth extends TileMapLayer
 # have it throw error if not??
 
 enum cell_state {UNVISITED, POSSIBLE, VISITED}
-@export var size: int
+# didn't want to hardcode this but can't export it and onready it at the same time afaik
+@onready var size: int = 51
 
-func generate(map_size: int) -> labyrinth:
-	var map: Array = initialize_maze(map_size)
+#var aster = preload("res://common/aster/aster.tscn")
+
+#func player_inst(pos):
+	#var asterinst = aster.instantiate()
+	#asterinst.position = pos
+	#add_child(asterinst)
+
+func _ready() -> void:
+	generate()
+	#player_inst(Vector2(10, 10))
+
+func generate() -> labyrinth:
+	var map: Array = initialize_maze()
 	hunt_and_kill(map)
 	draw_map(map)
 	return self
 
-func initialize_maze(map_size: int) -> Array:
+func initialize_maze() -> Array:
 	# initializes an array of arrays of zeroes to serve as base for map
 	var maze: Array = []
 	
-	maze.resize(map_size)
+	maze.resize(size)
 	maze.fill(cell_state.UNVISITED)
 	
-	for i in map_size:
+	for i in size:
 		var row: Array = []
-		row.resize(map_size)
+		row.resize(size)
 		row.fill(cell_state.UNVISITED)
 		maze[i] = row
 	
 	# could probably do this more efficiently but not my problem rn
-	for i in map_size:
-		for j in map_size:
+	for i in size:
+		for j in size:
 			if i % 2 != 0 and j % 2 != 0:
 				maze[i][j] = cell_state.POSSIBLE
 	
