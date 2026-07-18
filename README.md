@@ -9,17 +9,19 @@ sprite sheet for character done importing into godot now + making project. prob 
 1230am
 sprite sheet implemented, not yet animated, project set up + labyrinth code added and made a singleton, gonna pace for a bit yayyyyyyyy
 
+2am
+character animated and some labyrinth issues sorted out
+
 to add:
-decide on map size
 scoring (decrease slowly over time, incentivizes speed)
 seeding of maze
 maze autogenerates
 maze has exit
-animate pc + controller
 minotaur sprite + model
 minotaur ai
 3d implementation
 missions/flags/whatever (basic, no path, no icons, no map, 3d)
+lantern functionality
 high score tracker?
 menu + ui + settings + whatever
 low contrast mode lol
