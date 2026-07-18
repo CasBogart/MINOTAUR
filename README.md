@@ -15,6 +15,9 @@ character animated and some labyrinth issues sorted out
 330am
 character spritesheet fixed, was a bit wonky before and would transition weird.
 
+4am
+maze collisions functional and applied automatically
+
 to add:
 scoring (decrease slowly over time, incentivizes speed)
 seeding of maze
