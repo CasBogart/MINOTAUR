@@ -3,17 +3,29 @@
 [ext_resource type="Texture2D" uid="uid://no6712l1o4im" path="res://src/gen_tiles.png" id="1_bnp2g"]
 [ext_resource type="Script" uid="uid://dn56s3sxvwitd" path="res://src/labyrinth.gd" id="1_iepnh"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bnp2g"]
+resource_name = "Wall"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e2clf"]
+resource_name = "Floor"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2clf"]
 texture = ExtResource("1_bnp2g")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 2:0/0 = 0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_ilt5k"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_bnp2g")
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+physics_layer_1/physics_material = SubResource("PhysicsMaterial_e2clf")
 sources/0 = SubResource("TileSetAtlasSource_e2clf")
 
 [node name="Labyrinth" type="TileMapLayer" unique_id=800161411]
 tile_set = SubResource("TileSet_ilt5k")
-collision_enabled = false
 script = ExtResource("1_iepnh")
 metadata/_custom_type_script = "uid://dn56s3sxvwitd"

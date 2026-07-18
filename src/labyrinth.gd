@@ -16,7 +16,7 @@ func player_inst(pos):
 
 func _ready() -> void:
 	generate()
-	player_inst(Vector2(100, 100))
+	player_inst(Vector2(floor(size / 2), floor(size / 2)))
 
 func generate() -> labyrinth:
 	var map: Array = initialize_maze()

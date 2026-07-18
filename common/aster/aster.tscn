@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://2sfnlefbermd" path="res://common/aster/aster_walk.png" id="2_vr4qn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_syoci"]
-height = 40.0
+radius = 11.0
+height = 35.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vr4qn"]
 atlas = ExtResource("2_vr4qn")
@@ -113,8 +114,7 @@ collision_mask = 4
 script = ExtResource("1_lwfef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645203980]
-position = Vector2(0, -1.5)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CapsuleShape2D_syoci")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1218898858]
@@ -122,4 +122,4 @@ sprite_frames = SubResource("SpriteFrames_hlbus")
 animation = &"walkside"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=930273896]
-zoom = Vector2(15, 15)
+zoom = Vector2(10, 10)

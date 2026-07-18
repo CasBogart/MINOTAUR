@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 # i just made some bullshittttt
 # im not making a state machine rn just trust that i can do it lmao
-# come back later and clean some of this up? transitions get a bit wonky
+
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("move_right"):
 		animated_sprite.flip_h = false
