@@ -20,9 +20,6 @@ func process_physics(delta) -> State:
 		var nav_point_direction = parent.to_local(parent.nav_agent.get_next_path_position()).normalized()
 		parent.velocity = nav_point_direction * run_speed * delta
 	
-	if parent.nav_agent.path_return_max_radius < parent.to_local(parent.nav_agent.get_path_length()).normalized():
-		return SearchState
-	
 	if pursueTimer.timeout:
 		parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
 	

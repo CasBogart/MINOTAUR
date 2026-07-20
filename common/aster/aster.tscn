@@ -114,7 +114,7 @@ animations = [{
 }]
 
 [node name="Aster" type="CharacterBody2D" unique_id=1215084856 groups=["minotarget"]]
-collision_mask = 4
+collision_mask = 260
 script = ExtResource("1_lwfef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645203980]
@@ -126,7 +126,7 @@ sprite_frames = SubResource("SpriteFrames_hlbus")
 animation = &"walkside"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=930273896]
-zoom = Vector2(10, 10)
+zoom = Vector2(12.5, 12.5)
 
 [node name="StateMachine" type="Node" parent="." unique_id=350882783 node_paths=PackedStringArray("INITIAL_STATE")]
 script = ExtResource("3_vr4qn")

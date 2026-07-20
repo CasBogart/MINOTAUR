@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*uid://dlq7ikf60ys2k"
+Flags="*uid://d2d3vsw2y1fus"
 
 [debug]
 
@@ -27,6 +28,8 @@ gdscript/warnings/integer_division=0
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/mode=3
+mouse_cursor/custom_image="uid://voguh1isc7m2"
+mouse_cursor/custom_image_hotspot=Vector2(37, 57)
 
 [global_group]
 
@@ -68,6 +71,7 @@ run={
 2d_navigation/layer_3="maze"
 2d_physics/layer_4="minotaur"
 2d_navigation/layer_4="walls"
+2d_physics/layer_9="bullshit"
 
 [physics]
 

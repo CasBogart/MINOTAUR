@@ -8,13 +8,20 @@
 [ext_resource type="Script" uid="uid://cnvnurxgq8nva" path="res://src/statemachine/minotaur2dstate/minoIdle.gd" id="6_s5gt7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
-radius = 3.0
-height = 10.0
+radius = 2.5
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s5gt7"]
+radius = 100.0
 
 [node name="Minotaur" type="CharacterBody2D" unique_id=1049601149]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_xgclo")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2090103758]
+target_position = Vector2(50, 0)
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=855484312]
 shape = SubResource("CapsuleShape2D_xgclo")
@@ -63,3 +70,17 @@ metadata/_custom_type_script = "uid://cnvnurxgq8nva"
 
 [node name="IdleTimer" type="Timer" parent="StateMachine" unique_id=2094506934]
 one_shot = true
+
+[node name="SearchArea" type="Area2D" parent="." unique_id=434927290]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SearchArea" unique_id=447216319]
+shape = SubResource("CircleShape2D_s5gt7")
+
+[node name="SearchTimer" type="Timer" parent="." unique_id=1823164979]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]
+[connection signal="timeout" from="SearchTimer" to="." method="_on_search_timer_timeout"]

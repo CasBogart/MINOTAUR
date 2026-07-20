@@ -46,7 +46,6 @@ func process(delta: float):
 		change_state(new_state)
 
 func change_state(new_state: State):
-	
 	# Exits current state
 	
 	if current_state:

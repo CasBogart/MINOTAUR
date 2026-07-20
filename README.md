@@ -43,15 +43,19 @@ i did fucking nothing last night lets get it
 11pm
 minotaur navigation working, has idle wander and pursue states, need to add in lantern functionality
 
+130am 7/20/26
+mouse has custom cursor, for the record i did want it animated and don't care about mixels at this point
+
+245am
+minotaur now has search area, will enter pursuit if player is too close and not behind a wall
+
 to add:
 map
-lantern functionality
 scoring (decrease slowly over time, incentivizes speed)
 minotaur model
 maze exit functions
 3d implementation
 missions/flags/whatever (basic, dark, no icons, no map, 3d)
-lantern functionality (this will have some delay but idc at this point)
 high score tracker?
 menu + ui + settings + whatever
 low contrast mode lol

@@ -7,8 +7,8 @@ var search_speed: int = 600
 
 func enter():
 	parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
-	parent.nav_agent.target_position.x += randi_range(-30, 30)
-	parent.nav_agent.target_position.y += randi_range(-30, 30)
+	parent.nav_agent.target_position.x += randi_range(-20, 20)
+	parent.nav_agent.target_position.y += randi_range(-20, 20)
 
 func exit():
 	pass
