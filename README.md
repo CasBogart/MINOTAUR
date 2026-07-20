@@ -1,6 +1,6 @@
 Game made over the weekend of 7/16/2026-7/19/2026 for the SKG'26 Jam. No expectations of winning anything but it'll be fun lmao, this is mostly a timeline of my progress atm, might update later
 
-12am 7/17/26
+12am 7/18/26
 good morning i am both stupid and insane lets get this bagggg
 
 1220am
@@ -34,18 +34,28 @@ nevermind i got it working, actually taking a break now
 3pm
 maze is now seeded, still need to make seeds time/date-related but that can be a different problem later
 
+1130pm
+I spent like an hour trying to figure out a main menu, didn't work so now I'm doing something different
 
+12pm 7/19/26
+i did fucking nothing last night lets get it
+
+11pm
+minotaur navigation working, has idle wander and pursue states, need to add in lantern functionality
 
 to add:
+map
+lantern functionality
 scoring (decrease slowly over time, incentivizes speed)
 minotaur model
-minotaur ai
+maze exit functions
 3d implementation
 missions/flags/whatever (basic, dark, no icons, no map, 3d)
 lantern functionality (this will have some delay but idc at this point)
 high score tracker?
 menu + ui + settings + whatever
 low contrast mode lol
+vfx
 music + sfx
 can run on web
 rng from time/date

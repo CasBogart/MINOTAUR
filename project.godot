@@ -14,6 +14,10 @@ config/name="MINOTAUR"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*uid://dlq7ikf60ys2k"
+
 [debug]
 
 gdscript/warnings/integer_division=0
@@ -63,6 +67,7 @@ run={
 2d_physics/layer_3="wall"
 2d_navigation/layer_3="maze"
 2d_physics/layer_4="minotaur"
+2d_navigation/layer_4="walls"
 
 [physics]
 

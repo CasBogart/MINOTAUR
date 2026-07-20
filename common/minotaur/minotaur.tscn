@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bxqxqd41ywtc7" path="res://common/minotaur/minotaur.png" id="1_7tlxx"]
 [ext_resource type="Script" uid="uid://db1iusrigr0mt" path="res://common/minotaur/minotaur.gd" id="1_xgclo"]
+[ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="3_4a63y"]
+[ext_resource type="Script" uid="uid://dtv323af3od1e" path="res://src/statemachine/minotaur2dstate/minoPursue.gd" id="4_2k8ih"]
+[ext_resource type="Script" uid="uid://dcn2u1fyjof6j" path="res://src/statemachine/minotaur2dstate/minoSearch.gd" id="5_jbs1e"]
+[ext_resource type="Script" uid="uid://cnvnurxgq8nva" path="res://src/statemachine/minotaur2dstate/minoIdle.gd" id="6_s5gt7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
 radius = 3.0
@@ -19,11 +23,43 @@ shape = SubResource("CapsuleShape2D_xgclo")
 texture = ExtResource("1_7tlxx")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1302296990]
-path_desired_distance = 1.0
-target_desired_distance = 1.0
+path_desired_distance = 3.0
+target_desired_distance = 15.0
 navigation_layers = 4
 path_postprocessing = 1
 simplify_path = true
-debug_enabled = true
+simplify_epsilon = 3.0
+path_return_max_radius = 100.0
+radius = 3.0
+avoidance_layers = 0
+avoidance_mask = 8
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="StateMachine" type="Node" parent="." unique_id=527447310 node_paths=PackedStringArray("INITIAL_STATE")]
+script = ExtResource("3_4a63y")
+INITIAL_STATE = NodePath("MinoSearch")
+metadata/_custom_type_script = "uid://bmy4fljjiwts2"
+
+[node name="MinoPursue" type="Node" parent="StateMachine" unique_id=552462194 node_paths=PackedStringArray("SearchState")]
+script = ExtResource("4_2k8ih")
+SearchState = NodePath("../MinoSearch")
+metadata/_custom_type_script = "uid://dtv323af3od1e"
+
+[node name="PursueTimer" type="Timer" parent="StateMachine" unique_id=770955948]
+wait_time = 1.5
+
+[node name="MinoSearch" type="Node" parent="StateMachine" unique_id=397797247 node_paths=PackedStringArray("IdleState", "PursueState")]
+script = ExtResource("5_jbs1e")
+IdleState = NodePath("../MinoIdle")
+PursueState = NodePath("../MinoPursue")
+metadata/_custom_type_script = "uid://dcn2u1fyjof6j"
+
+[node name="MinoIdle" type="Node" parent="StateMachine" unique_id=60297968 node_paths=PackedStringArray("SearchState", "PursueState")]
+script = ExtResource("6_s5gt7")
+SearchState = NodePath("../MinoSearch")
+PursueState = NodePath("../MinoPursue")
+metadata/_custom_type_script = "uid://cnvnurxgq8nva"
+
+[node name="IdleTimer" type="Timer" parent="StateMachine" unique_id=2094506934]
+one_shot = true
