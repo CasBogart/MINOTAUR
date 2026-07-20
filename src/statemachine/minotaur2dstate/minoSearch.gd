@@ -2,6 +2,7 @@ class_name MinoSearch extends State
 
 @export var IdleState: State
 @export var PursueState: State
+@export var FollowState: State
 
 var search_speed: int = 600
 

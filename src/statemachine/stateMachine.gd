@@ -54,4 +54,5 @@ func change_state(new_state: State):
 	# Updates current state to the new desired state and enters
 	
 	current_state = new_state
+	
 	current_state.enter()

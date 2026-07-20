@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dtv323af3od1e" path="res://src/statemachine/minotaur2dstate/minoPursue.gd" id="4_2k8ih"]
 [ext_resource type="Script" uid="uid://dcn2u1fyjof6j" path="res://src/statemachine/minotaur2dstate/minoSearch.gd" id="5_jbs1e"]
 [ext_resource type="Script" uid="uid://cnvnurxgq8nva" path="res://src/statemachine/minotaur2dstate/minoIdle.gd" id="6_s5gt7"]
+[ext_resource type="Script" uid="uid://bdg4sx6bwp0pv" path="res://src/statemachine/minotaur2dstate/minoFollow.gd" id="7_4nr3n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
 radius = 2.5
@@ -48,28 +49,39 @@ script = ExtResource("3_4a63y")
 INITIAL_STATE = NodePath("MinoSearch")
 metadata/_custom_type_script = "uid://bmy4fljjiwts2"
 
-[node name="MinoPursue" type="Node" parent="StateMachine" unique_id=552462194 node_paths=PackedStringArray("SearchState")]
+[node name="MinoPursue" type="Node" parent="StateMachine" unique_id=552462194 node_paths=PackedStringArray("SearchState", "IdleState", "FollowState")]
 script = ExtResource("4_2k8ih")
 SearchState = NodePath("../MinoSearch")
+IdleState = NodePath("../MinoIdle")
+FollowState = NodePath("../MinoFollow")
 metadata/_custom_type_script = "uid://dtv323af3od1e"
 
 [node name="PursueTimer" type="Timer" parent="StateMachine" unique_id=770955948]
 wait_time = 1.5
 
-[node name="MinoSearch" type="Node" parent="StateMachine" unique_id=397797247 node_paths=PackedStringArray("IdleState", "PursueState")]
+[node name="MinoSearch" type="Node" parent="StateMachine" unique_id=397797247 node_paths=PackedStringArray("IdleState", "PursueState", "FollowState")]
 script = ExtResource("5_jbs1e")
 IdleState = NodePath("../MinoIdle")
 PursueState = NodePath("../MinoPursue")
+FollowState = NodePath("../MinoFollow")
 metadata/_custom_type_script = "uid://dcn2u1fyjof6j"
 
-[node name="MinoIdle" type="Node" parent="StateMachine" unique_id=60297968 node_paths=PackedStringArray("SearchState", "PursueState")]
+[node name="MinoIdle" type="Node" parent="StateMachine" unique_id=60297968 node_paths=PackedStringArray("SearchState", "PursueState", "FollowState")]
 script = ExtResource("6_s5gt7")
 SearchState = NodePath("../MinoSearch")
 PursueState = NodePath("../MinoPursue")
+FollowState = NodePath("../MinoFollow")
 metadata/_custom_type_script = "uid://cnvnurxgq8nva"
 
 [node name="IdleTimer" type="Timer" parent="StateMachine" unique_id=2094506934]
 one_shot = true
+
+[node name="MinoFollow" type="Node" parent="StateMachine" unique_id=656594998 node_paths=PackedStringArray("SearchState", "PursueState", "IdleState")]
+script = ExtResource("7_4nr3n")
+SearchState = NodePath("../MinoSearch")
+PursueState = NodePath("../MinoPursue")
+IdleState = NodePath("../MinoIdle")
+metadata/_custom_type_script = "uid://bdg4sx6bwp0pv"
 
 [node name="SearchArea" type="Area2D" parent="." unique_id=434927290]
 collision_layer = 256
@@ -79,7 +91,6 @@ shape = SubResource("CircleShape2D_s5gt7")
 
 [node name="SearchTimer" type="Timer" parent="." unique_id=1823164979]
 wait_time = 0.2
-autostart = true
 
 [connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]

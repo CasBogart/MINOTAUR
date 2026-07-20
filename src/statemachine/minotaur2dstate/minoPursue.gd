@@ -1,6 +1,8 @@
 class_name MinoPursue extends State
 
 @export var SearchState: State
+@export var IdleState: State
+@export var FollowState: State
 
 @onready var pursueTimer: Timer = $"../PursueTimer"
 var run_speed: int = 1350
@@ -16,7 +18,7 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if !parent.nav_agent.is_target_reached():
+	if not parent.nav_agent.is_target_reached():
 		var nav_point_direction = parent.to_local(parent.nav_agent.get_next_path_position()).normalized()
 		parent.velocity = nav_point_direction * run_speed * delta
 	

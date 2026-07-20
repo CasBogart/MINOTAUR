@@ -25,6 +25,7 @@ func process_physics(delta) -> State:
 	return null
 
 func process(_delta) -> State:
+	SignalBus.emit_signal("player_running", parent.position)
 	# probably a better way to do this but idc
 	parent.animated_sprite.set_speed_scale(1.75)
 	

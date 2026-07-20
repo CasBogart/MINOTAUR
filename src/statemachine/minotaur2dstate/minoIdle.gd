@@ -2,6 +2,7 @@ class_name MinoIdle extends State
 
 @export var SearchState: State
 @export var PursueState: State
+@export var FollowState: State
 
 @onready var idle_timer: Timer = $"../IdleTimer"
 
