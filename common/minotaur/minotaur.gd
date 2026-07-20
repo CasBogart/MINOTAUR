@@ -24,6 +24,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
+# this is probably fucked up rn but I'll figure it out later
+
 func _on_search_area_body_entered(_body: Node2D) -> void:
 	search_timer.start()
 
@@ -33,7 +35,6 @@ func _on_search_area_body_exited(_body: Node2D) -> void:
 func _on_search_timer_timeout() -> void:
 	current_raycast_collider = raycast.get_collider()
 	if current_raycast_collider is CharacterBody2D:
-		search_timer.stop()
 		state_machine.change_state($StateMachine/MinoPursue)
 
 func update_search(pos: Vector2i):

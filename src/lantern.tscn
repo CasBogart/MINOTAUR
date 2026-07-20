@@ -16,4 +16,4 @@ fill_from = Vector2(0.5, 0.5)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = SubResource("GradientTexture2D_m7ftc")
-texture_scale = 3.0
+texture_scale = 2.0

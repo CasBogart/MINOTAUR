@@ -52,10 +52,16 @@ minotaur now has search area, will enter pursuit if player is too close and not 
 9am
 fell asleep again lmao, lantern now casts shadows
 
+12pm
+lantern doesn't cast shadows anymore, was cool but hurt my eyes
+improvements to minotaur navigation system, can now enter pursuit if noticed by raycast 
+(i could probably improve it, technically i don't think i need the collisionshape but whatever)
+
 to add:
 map
 scoring (decrease slowly over time, incentivizes speed)
 minotaur model
+minotaur spawn randomized
 maze exit functions
 3d implementation
 missions/flags/whatever (basic, dark, no icons, no map, 3d)
@@ -65,4 +71,3 @@ low contrast mode? lol
 vfx
 music + sfx
 can run on web
-rng from time/date

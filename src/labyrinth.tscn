@@ -30,7 +30,7 @@ texture = ExtResource("1_bnp2g")
 2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bnp2g")
 
 [sub_resource type="TileSet" id="TileSet_ilt5k"]
-occlusion_layer_0/light_mask = 1
+occlusion_layer_0/light_mask = 0
 occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 4
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_bnp2g")

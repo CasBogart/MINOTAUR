@@ -23,8 +23,7 @@ func _ready() -> void:
 	inst(Vector2(150, 150), minotaur)
 
 func generate() -> labyrinth:
-	# replace this later lmao
-	rng.seed = hash("gaming")
+	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
 	var map: Array = initialize_maze()
 	hunt_and_kill(map)
 	find_exit(map)

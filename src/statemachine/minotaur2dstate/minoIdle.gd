@@ -8,7 +8,7 @@ class_name MinoIdle extends State
 
 func enter():
 	parent.velocity = Vector2(0, 0)
-	idle_timer.start(1)
+	idle_timer.start(0.5)
 
 func exit():
 	pass

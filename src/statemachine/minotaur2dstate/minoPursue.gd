@@ -25,6 +25,10 @@ func process_physics(delta) -> State:
 	if pursueTimer.timeout:
 		parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
 	
+	# this isn't normalized but whatever
+	if (parent.raycast.target_position.x - parent.position.x > 5 or parent.raycast.target_position.y - parent.position.y > 5) and not parent.raycast.get_collider() is CharacterBody2D:
+		return IdleState
+	
 	return null
 
 func process(_delta) -> State:
