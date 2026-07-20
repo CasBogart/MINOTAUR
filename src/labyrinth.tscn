@@ -9,6 +9,10 @@ resource_name = "Wall"
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e2clf"]
 resource_name = "Floor"
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bnp2g"]
+cull_mode = 1
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bnp2g"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -18,6 +22,7 @@ agent_radius = 0.0
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2clf"]
 texture = ExtResource("1_bnp2g")
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bnp2g")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 2:0/0 = 0
@@ -25,6 +30,8 @@ texture = ExtResource("1_bnp2g")
 2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bnp2g")
 
 [sub_resource type="TileSet" id="TileSet_ilt5k"]
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 4
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_bnp2g")
 physics_layer_1/collision_layer = 2
@@ -37,3 +44,6 @@ sources/0 = SubResource("TileSetAtlasSource_e2clf")
 tile_set = SubResource("TileSet_ilt5k")
 script = ExtResource("1_iepnh")
 metadata/_custom_type_script = "uid://dn56s3sxvwitd"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1566983077]
+color = Color(0, 0, 0, 1)

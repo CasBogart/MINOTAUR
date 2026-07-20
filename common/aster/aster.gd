@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
+@onready var lantern = $Lantern
 
 # i just made some bullshittttt
 
@@ -15,6 +16,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
+	# there's some latency but whatever atp
+	lantern.position = get_global_mouse_position() - self.position
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)

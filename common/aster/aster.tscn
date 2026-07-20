@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d24tbm5tfe8w7" path="res://common/aster/aster.gd" id="1_lwfef"]
 [ext_resource type="Texture2D" uid="uid://2sfnlefbermd" path="res://common/aster/aster_walk.png" id="2_vr4qn"]
+[ext_resource type="PackedScene" uid="uid://bs7j858qw0oq4" path="res://src/lantern.tscn" id="2_w5ep6"]
 [ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="3_vr4qn"]
 [ext_resource type="Script" uid="uid://pr1klio7a1vg" path="res://src/statemachine/player2dstate/playerIdle.gd" id="4_syoci"]
 [ext_resource type="Script" uid="uid://d4ld1iaiciplk" path="res://src/statemachine/player2dstate/playerWalk.gd" id="5_aaelh"]
@@ -116,6 +117,8 @@ animations = [{
 [node name="Aster" type="CharacterBody2D" unique_id=1215084856 groups=["minotarget"]]
 collision_mask = 260
 script = ExtResource("1_lwfef")
+
+[node name="Lantern" parent="." unique_id=210182222 instance=ExtResource("2_w5ep6")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645203980]
 scale = Vector2(0.3, 0.3)

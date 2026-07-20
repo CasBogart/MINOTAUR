@@ -49,6 +49,9 @@ mouse has custom cursor, for the record i did want it animated and don't care ab
 245am
 minotaur now has search area, will enter pursuit if player is too close and not behind a wall
 
+9am
+fell asleep again lmao, lantern now casts shadows
+
 to add:
 map
 scoring (decrease slowly over time, incentivizes speed)
@@ -58,7 +61,7 @@ maze exit functions
 missions/flags/whatever (basic, dark, no icons, no map, 3d)
 high score tracker?
 menu + ui + settings + whatever
-low contrast mode lol
+low contrast mode? lol
 vfx
 music + sfx
 can run on web

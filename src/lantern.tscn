@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bs7j858qw0oq4"]
+
+[sub_resource type="Gradient" id="Gradient_hikvm"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.6740088)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m7ftc"]
+gradient = SubResource("Gradient_hikvm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Lantern" type="Node2D" unique_id=210182222]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1777112776]
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_m7ftc")
+texture_scale = 3.0
