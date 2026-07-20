@@ -1,13 +1,16 @@
 class_name PlayerRun extends State
 
+@onready var run_timer: Timer = $"../RunTimer"
+
 @export var IdleState: State
 @export var WalkState: State
 
 func enter():
-	pass
+	SignalBus.emit_signal("player_running")
+	run_timer.start()
 
 func exit():
-	pass
+	run_timer.stop()
 
 func process_input(_event: InputEvent) -> State:
 	return null
@@ -25,7 +28,6 @@ func process_physics(delta) -> State:
 	return null
 
 func process(_delta) -> State:
-	SignalBus.emit_signal("player_running", parent.position)
 	# probably a better way to do this but idc
 	parent.animated_sprite.set_speed_scale(1.75)
 	
@@ -41,5 +43,9 @@ func process(_delta) -> State:
 	elif Input.is_action_pressed("move_down"):
 		parent.animated_sprite.flip_h = false
 		parent.animated_sprite.play("walkforward")
-		
+	
+	if run_timer.is_stopped():
+		SignalBus.emit_signal("player_running")
+		run_timer.start()
+	
 	return null

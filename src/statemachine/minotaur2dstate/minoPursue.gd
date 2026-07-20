@@ -5,7 +5,7 @@ class_name MinoPursue extends State
 @export var FollowState: State
 
 @onready var pursueTimer: Timer = $"../PursueTimer"
-var run_speed: int = 1350
+var run_speed: int = 1500
 
 func enter():
 	parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position

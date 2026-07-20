@@ -34,11 +34,9 @@ func _on_search_area_body_exited(_body: Node2D) -> void:
 
 func _on_search_timer_timeout() -> void:
 	current_raycast_collider = raycast.get_collider()
-	if current_raycast_collider is CharacterBody2D:
+	if current_raycast_collider is CharacterBody2D and not state_machine.current_state == $StateMachine/MinoPursue:
 		state_machine.change_state($StateMachine/MinoPursue)
 
-func update_search(pos: Vector2i):
-	if not state_machine.current_state == $StateMachine/MinoFollow:
+func update_search():
+	if not state_machine.current_state == $StateMachine/MinoFollow and not state_machine.current_state == $StateMachine/MinoPursue:
 		state_machine.change_state($StateMachine/MinoFollow)
-	
-	nav_agent.target_position = pos

@@ -153,3 +153,6 @@ script = ExtResource("6_w5ep6")
 IdleState = NodePath("../PlayerIdle")
 WalkState = NodePath("../PlayerWalk")
 metadata/_custom_type_script = "uid://bwusqala3q71j"
+
+[node name="RunTimer" type="Timer" parent="StateMachine" unique_id=391597508]
+wait_time = 0.5

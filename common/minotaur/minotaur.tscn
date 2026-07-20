@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://bdg4sx6bwp0pv" path="res://src/statemachine/minotaur2dstate/minoFollow.gd" id="7_4nr3n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
-radius = 2.5
-height = 8.0
+radius = 4.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s5gt7"]
 radius = 100.0
@@ -37,7 +37,6 @@ navigation_layers = 4
 path_postprocessing = 1
 simplify_path = true
 simplify_epsilon = 3.0
-path_return_max_radius = 100.0
 radius = 3.0
 avoidance_layers = 0
 avoidance_mask = 8
