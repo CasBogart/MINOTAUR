@@ -6,7 +6,7 @@ class_name PlayerRun extends State
 @export var WalkState: State
 
 func enter():
-	SignalBus.emit_signal("player_running")
+	SignalBus.emit_signal("player_running", parent.position)
 	run_timer.start()
 
 func exit():
@@ -45,7 +45,7 @@ func process(_delta) -> State:
 		parent.animated_sprite.play("walkforward")
 	
 	if run_timer.is_stopped():
-		SignalBus.emit_signal("player_running")
+		SignalBus.emit_signal("player_running", parent.position)
 		run_timer.start()
 	
 	return null

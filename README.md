@@ -64,7 +64,7 @@ minotaur model
 minotaur spawn randomized
 maze exit functions
 3d implementation
-missions/flags/whatever (basic, dark, no icons, no map, 3d)
+implement flags
 high score tracker?
 menu + ui + settings + whatever
 low contrast mode? lol

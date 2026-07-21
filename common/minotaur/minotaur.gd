@@ -7,11 +7,16 @@ extends CharacterBody2D
 @onready var search_area: Area2D = $SearchArea
 @onready var search_timer: Timer = $SearchTimer
 @onready var state_machine: StateMachine = $StateMachine
+
+@export var PursueState: State
+@export var FollowState: State
+
 var current_raycast_collider
 
 func _ready() -> void:
 	state_machine.init(self)
 	SignalBus.player_running.connect(update_search)
+	SignalBus.lantern_follow.connect(update_search)
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
@@ -34,9 +39,10 @@ func _on_search_area_body_exited(_body: Node2D) -> void:
 
 func _on_search_timer_timeout() -> void:
 	current_raycast_collider = raycast.get_collider()
-	if current_raycast_collider is CharacterBody2D and not state_machine.current_state == $StateMachine/MinoPursue:
-		state_machine.change_state($StateMachine/MinoPursue)
+	if current_raycast_collider is CharacterBody2D and (current_raycast_collider.lantern.light.enabled == true or current_raycast_collider.velocity > Vector2(0, 0)) and not state_machine.current_state == PursueState:
+		state_machine.change_state(PursueState)
 
-func update_search():
-	if not state_machine.current_state == $StateMachine/MinoFollow and not state_machine.current_state == $StateMachine/MinoPursue:
-		state_machine.change_state($StateMachine/MinoFollow)
+func update_search(pos: Vector2):
+	if not state_machine.current_state == PursueState:
+		nav_agent.target_position = pos
+		state_machine.change_state(FollowState)

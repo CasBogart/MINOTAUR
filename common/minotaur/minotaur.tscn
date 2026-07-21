@@ -15,10 +15,12 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_s5gt7"]
 radius = 100.0
 
-[node name="Minotaur" type="CharacterBody2D" unique_id=1049601149]
+[node name="Minotaur" type="CharacterBody2D" unique_id=1049601149 node_paths=PackedStringArray("PursueState", "FollowState")]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_xgclo")
+PursueState = NodePath("StateMachine/MinoPursue")
+FollowState = NodePath("StateMachine/MinoFollow")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2090103758]
 target_position = Vector2(100, 0)
@@ -31,7 +33,7 @@ shape = SubResource("CapsuleShape2D_xgclo")
 texture = ExtResource("1_7tlxx")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1302296990]
-path_desired_distance = 3.0
+path_desired_distance = 1.0
 target_desired_distance = 15.0
 navigation_layers = 4
 path_postprocessing = 1

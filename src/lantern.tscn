@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bs7j858qw0oq4"]
 
+[ext_resource type="Script" uid="uid://bvhrkyovql6bl" path="res://src/lantern.gd" id="1_m7ftc"]
+
 [sub_resource type="Gradient" id="Gradient_hikvm"]
 interpolation_color_space = 1
 offsets = PackedFloat32Array(0, 0.6740088)
@@ -10,10 +12,28 @@ gradient = SubResource("Gradient_hikvm")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7ftc"]
+radius = 55.0
+
 [node name="Lantern" type="Node2D" unique_id=210182222]
+script = ExtResource("1_m7ftc")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1777112776]
+enabled = false
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = SubResource("GradientTexture2D_m7ftc")
 texture_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1343783056]
+collision_layer = 256
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1016841338]
+shape = SubResource("CircleShape2D_m7ftc")
+
+[node name="Timer" type="Timer" parent="." unique_id=1833203135]
+wait_time = 45.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

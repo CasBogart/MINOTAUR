@@ -10,7 +10,7 @@ var run_speed: int = 1250
 # this is just a slightly different pursue that only updates when the player is running
 
 func enter():
-	parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
+	pass
 
 func exit():
 	pass
