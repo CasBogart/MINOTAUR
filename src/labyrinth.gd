@@ -17,10 +17,9 @@ func inst(pos: Vector2, object: Resource):
 	add_child(instance)
 
 func _ready() -> void:
-	generate()
-	# no idea if this is actually centered on the tile but idc at this point
-	inst(Vector2((floor(size / 2) * 10) - 2.5, (floor(size / 2) * 10) - 2.5), aster)
-	inst(Vector2(150, 150), minotaur)
+	if not Flags.here_before:
+		generate()
+		Flags.here_before = true
 
 func generate() -> labyrinth:
 	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
@@ -28,6 +27,19 @@ func generate() -> labyrinth:
 	hunt_and_kill(map)
 	find_exit(map)
 	draw_map(map)
+	
+	inst(Vector2((floor(size / 2) * 10) - 2.5, (floor(size / 2) * 10) - 2.5), aster)
+	
+	if 0 < Flags.level and Flags.level < 5:
+		var mino_spawn_random: Array = []
+		for i in map.size():
+			for j in map.size():
+				if map[i][j] == cell_state.VISITED and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
+					mino_spawn_random.append([i, j])
+		
+		var spawn: Array = mino_spawn_random.pick_random()
+		inst(Vector2(spawn[0], spawn[1]), minotaur)
+	
 	return self
 
 func initialize_maze() -> Array:

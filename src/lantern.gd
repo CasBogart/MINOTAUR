@@ -6,7 +6,8 @@ var light_has_been_disabled: bool = true
 var num: int = 0
 
 func _ready() -> void:
-	pass
+	if Flags.level < 5 and Flags.level > 1:
+		light.texture_scale = 1.5
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("lantern_interact") and not light.enabled:
