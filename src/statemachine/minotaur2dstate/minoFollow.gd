@@ -4,13 +4,14 @@ class_name MinoFollow extends State
 @export var PursueState: State
 @export var IdleState: State
 
-@onready var pursueTimer: Timer = $"../PursueTimer"
+@onready var followTimer: Timer = $"../FollowTimer"
 var run_speed: int = 1250
 
-# this is just a slightly different pursue that only updates when the player is running
+# this is just a slightly different pursue
 
 func enter():
-	pass
+	if parent.lantern_following:
+		followTimer.start()
 
 func exit():
 	pass
@@ -19,10 +20,15 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta) -> State:
-	if not parent.nav_agent.is_target_reached():
+	if parent.lantern_following:
+		if followTimer.timeout and (parent.lantern_raycast.get_collider() is Node2D or parent.lantern_raycast.get_target_position().length() < 50):
+			parent.nav_agent.target_position = parent.get_global_mouse_position()
+	
+	if not parent.nav_agent.is_navigation_finished():
 		var nav_point_direction = parent.to_local(parent.nav_agent.get_next_path_position()).normalized()
 		parent.velocity = nav_point_direction * run_speed * delta
 	else:
+		parent.lantern_following = false
 		return IdleState
 	
 	return null

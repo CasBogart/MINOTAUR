@@ -57,17 +57,5 @@ lantern doesn't cast shadows anymore, was cool but hurt my eyes
 improvements to minotaur navigation system, can now enter pursuit if noticed by raycast 
 (i could probably improve it, technically i don't think i need the collisionshape but whatever)
 
-to add:
-map
-scoring (decrease slowly over time, incentivizes speed)
-minotaur model
-minotaur spawn randomized
-maze exit functions
-3d implementation
-implement flags
-high score tracker?
-menu + ui + settings + whatever
-low contrast mode? lol
-vfx
-music + sfx
-can run on web
+12am 7/22/26
+oughhhhhhhhhh

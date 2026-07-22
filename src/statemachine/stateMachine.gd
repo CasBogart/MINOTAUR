@@ -55,4 +55,7 @@ func change_state(new_state: State):
 	
 	current_state = new_state
 	
+	if not $"..".is_in_group("minotarget"):
+		print(current_state)
+	
 	current_state.enter()
