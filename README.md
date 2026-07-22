@@ -59,3 +59,7 @@ improvements to minotaur navigation system, can now enter pursuit if noticed by 
 
 12am 7/22/26
 oughhhhhhhhhh
+
+1am
+minofollow now actually actually done, should follow lantern for a while + minopursue normalized lmao
+might need to check if lantern or player takes priority (might be important? but idrc also)
