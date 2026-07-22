@@ -45,5 +45,11 @@ tile_set = SubResource("TileSet_ilt5k")
 script = ExtResource("1_iepnh")
 metadata/_custom_type_script = "uid://dn56s3sxvwitd"
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=499074702]
+offset = Vector2(256, 256)
+enabled = false
+zoom = Vector2(3, 3)
+editor_draw_screen = false
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1566983077]
 color = Color(0, 0, 0, 1)

@@ -98,6 +98,10 @@ shape = SubResource("CircleShape2D_s5gt7")
 [node name="SearchTimer" type="Timer" parent="." unique_id=1823164979]
 wait_time = 0.2
 
+[node name="LanternFollowTimer" type="Timer" parent="." unique_id=349555287]
+wait_time = 1.25
+
 [connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]
 [connection signal="timeout" from="SearchTimer" to="." method="_on_search_timer_timeout"]
+[connection signal="timeout" from="LanternFollowTimer" to="." method="_on_lantern_follow_timer_timeout"]

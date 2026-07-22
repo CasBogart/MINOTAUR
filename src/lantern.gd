@@ -8,6 +8,7 @@ var num: int = 0
 func _ready() -> void:
 	if Flags.level < 5 and Flags.level > 1:
 		light.texture_scale = 1.5
+	SignalBus.open_map.connect(hide_lantern)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("lantern_interact") and not light.enabled:
@@ -24,3 +25,9 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 		# increase time between lures
 		num += 1
 		light_has_been_disabled = false
+
+func hide_lantern(_cam: Camera2D):
+	if self.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	elif not self.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED

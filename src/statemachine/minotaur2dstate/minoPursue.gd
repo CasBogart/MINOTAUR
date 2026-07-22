@@ -22,8 +22,7 @@ func process_physics(delta) -> State:
 		var nav_point_direction = parent.to_local(parent.nav_agent.get_next_path_position()).normalized()
 		parent.velocity = nav_point_direction * run_speed * delta
 	
-	# this isn't normalized but whatever
-	if parent.raycast.get_target_position().length < 30 and not parent.raycast.get_collider() is CharacterBody2D:
+	if parent.raycast.get_target_position().length() < 30 and not parent.raycast.get_collider() is CharacterBody2D:
 		return IdleState
 	
 	if pursueTimer.timeout:
