@@ -1,4 +1,4 @@
-Game made over the weekend of 7/16/2026-7/19/2026 for the SKG'26 Jam. No expectations of winning anything but it'll be fun lmao, this is mostly a timeline of my progress atm, might update later
+Game made for the SKG'26 Jam. No expectations of winning anything but it'll be fun lmao, this is mostly a timeline of my progress atm, might update later
 
 12am 7/18/26
 good morning i am both stupid and insane lets get this bagggg
@@ -63,3 +63,37 @@ oughhhhhhhhhh
 1am
 minofollow now actually actually done, should follow lantern for a while + minopursue normalized lmao
 might need to check if lantern or player takes priority (might be important? but idrc also)
+
+4am
+minotaur has been modelled, needs rigged and given material but we're good for the moment
+need to figure out ik in godot too
+got rid of line at beginning of readme saying this took two days no the fuck it didn't
+
+!!!!!!!!!!!!!TO-DO!!!!!!!!!!!!!!!!
+- map + icons
+(this should just be getting a copy of the tilemaplayer and putting it on a ui node or something)
+
+- main menu, level select, settings, score ui, high scores
+(just tedious)
+
+- randomize minotaur spawn
+(should already be a function in labyrinth to find a corner, so just modify that a bit)
+
+- minotaur animation + ik
+(this is gonna be rough but w/e)
+
+- rest of 3d implementation
+(player hand + lantern (might just be more pixel art tbh), 3d maze (again, pull from tilemap, keep floor texture same as 2d and basic tiling walls w fade from top))
+
+- flags
+(defined, not implemented, shouldn't be more that 20 min)
+
+- vfx (normal, none, low contrast)
+
+- music (normal, chase, normal3d, chase3d, menu?)
+(im gonna be in fl studio cooking up straight bullshit)
+
+- sfx (walking, running, minowalk, minorun, lanterninteract, buttoninteract, minotaur sounds?)
+
+- web compatibility
+(no idea)
