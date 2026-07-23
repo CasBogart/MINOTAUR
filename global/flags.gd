@@ -4,6 +4,7 @@ extends Node
 var level: int = 3
 
 var here_before: bool = false
+var map_opened: bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)

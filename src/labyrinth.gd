@@ -10,6 +10,7 @@ enum cell_state {UNVISITED, POSSIBLE, VISITED}
 @onready var dark: CanvasModulate = $CanvasModulate
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+var has_exit: bool = false
 var aster = preload("res://common/aster/aster.tscn")
 var minotaur = preload("res://common/minotaur/minotaur.tscn")
 
@@ -20,7 +21,8 @@ func inst(pos: Vector2, object: Resource):
 
 func _ready() -> void:
 	if not Flags.here_before:
-		generate()
+		while not has_exit:
+			generate()
 		Flags.here_before = true
 
 func _input(_event: InputEvent) -> void:
@@ -29,13 +31,18 @@ func _input(_event: InputEvent) -> void:
 			dark.visible = false
 		elif not dark.visible:
 			dark.visible = true
+		
+		if Flags.map_opened:
+			Flags.map_opened = false
+		elif not Flags.map_opened:
+			Flags.map_opened = true
 		SignalBus.emit_signal("open_map", cam)
 
 func generate() -> labyrinth:
 	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
 	var map: Array = initialize_maze()
 	hunt_and_kill(map)
-	find_exit(map)
+	find_possible_exit(map)
 	draw_map(map)
 	
 	#this isn't perfectly centered bc (16, 16) afaik is always a wall but. whatev
@@ -45,6 +52,7 @@ func generate() -> labyrinth:
 		var mino_spawn_random: Array = []
 		for i in map.size():
 			for j in map.size():
+				# add something to make sure not too close to player
 				if map[i][j] == cell_state.VISITED and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
 					mino_spawn_random.append([i, j])
 		
@@ -52,6 +60,12 @@ func generate() -> labyrinth:
 		# also fuckkkkkk it only generates on first entry i need to move these somewhere else
 		var spawn: Array = mino_spawn_random.pick_random()
 		inst(map_to_local(Vector2i(spawn[0], spawn[1])), minotaur)
+	
+	# keep an eye out for this to make sure it works
+	if not has_exit:
+		self.clear()
+		self.remove_child(minotaur)
+		self.remove_child(aster)
 	
 	return self
 
@@ -135,7 +149,7 @@ func hunt_and_kill(map: Array) -> Array:
 	
 	return map
 
-func find_exit(map: Array):
+func find_possible_exit(map: Array):
 	var possible_exit: Array = []
 	
 	for i in map.size():
@@ -143,7 +157,10 @@ func find_exit(map: Array):
 			if map[i][j] == cell_state.VISITED and ((i == 1 or i == 49) or (j == 1 or j == 49)) and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
 				possible_exit.append([i, j])
 	
-	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! something fucked up here and idk what
+	if possible_exit.size() < 1:
+		return
+	
+	# this is still broken
 	var exit_neighbor: Array = possible_exit[rng.randi_range(0, possible_exit.size() - 1)]
 	# this is the best i can be bothered to do it
 	if exit_neighbor[0] == 1:
@@ -154,6 +171,8 @@ func find_exit(map: Array):
 		map[exit_neighbor[0]][0] = cell_state.VISITED
 	elif exit_neighbor[1] == 49:
 		map[exit_neighbor[0]][50] = cell_state.VISITED
+	
+	has_exit = true
 
 func draw_map(map: Array):
 	for i in map.size():

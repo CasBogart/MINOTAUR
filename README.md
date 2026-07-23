@@ -1,4 +1,4 @@
-Game made for the SKG'26 Jam. No expectations of winning anything but it'll be fun lmao, this is mostly a timeline of my progress atm, might update later
+Game made for the SKG'26 Jam, (later GMTK 2026, I quit SKG bc lowkey i need something beefier for my resume. shitty? yes). No expectations of winning anything but it'll be fun lmao, this is mostly a timeline of my progress atm, might update later
 
 12am 7/18/26
 good morning i am both stupid and insane lets get this bagggg
@@ -69,24 +69,33 @@ minotaur has been modelled, needs rigged and given material but we're good for t
 need to figure out ik in godot too
 got rid of line at beginning of readme saying this took two days no the fuck it didn't
 
-!!!!!!!!!!!!!TO-DO!!!!!!!!!!!!!!!!
-- map + icons
-(this should just be getting a copy of the tilemaplayer and putting it on a ui node or something)
+10pm
+lantern fixed and minimap active now
+more minofollow tweaks
+lowk switched to the gmtk jam, feels shitty but i'm not technically breaking any rules
+
+
+TO DO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+- hide mino icon on map + reveal map as explore
+(sounds fun, also deincentivizes just keeping the map open)
+
+- maze exit scene + functionality
 
 - main menu, level select, settings, score ui, high scores
 (just tedious)
 
-- randomize minotaur spawn
-(should already be a function in labyrinth to find a corner, so just modify that a bit)
-
-- minotaur animation + ik
+- minotaur rigging, animation + ik
 (this is gonna be rough but w/e)
+
+- mino 3D ai
+(not sure how different this'll be from 2d)
 
 - rest of 3d implementation
 (player hand + lantern (might just be more pixel art tbh), 3d maze (again, pull from tilemap, keep floor texture same as 2d and basic tiling walls w fade from top))
 
 - flags
-(defined, not implemented, shouldn't be more that 20 min)
+(half implemented)
 
 - vfx (normal, none, low contrast)
 
@@ -95,5 +104,11 @@ got rid of line at beginning of readme saying this took two days no the fuck it 
 
 - sfx (walking, running, minowalk, minorun, lanterninteract, buttoninteract, minotaur sounds?)
 
-- web compatibility
-(no idea)
+- move inst functions
+(currently in generate() for the labyrinth, which is only run once the first time you boot it, so probably not good)
+
+- fix mino circling lantern problem
+(slowly shrink radius?)
+
+- go back and animate cursor?
+(not necessary but if I'm having latency at this point then whatever really)

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
-@onready var player_cam: Camera2D = $Camera2D
+@onready var player_cam: Camera2D = $PlayerCam
 @onready var lantern = $Lantern
 
 # i just made some bullshittttt
@@ -29,6 +29,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
 func map_open(camera: Camera2D):
+	# i don't even know but it looks like it works
+	lantern.hide_lantern(camera)
 	if not camera.enabled:
 		camera.enabled = true
 		player_cam.enabled = false
