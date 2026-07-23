@@ -24,6 +24,7 @@ func _ready() -> void:
 		while not has_exit:
 			generate()
 		Flags.here_before = true
+	
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("map"):
@@ -44,7 +45,16 @@ func generate() -> labyrinth:
 	hunt_and_kill(map)
 	find_possible_exit(map)
 	draw_map(map)
+	spawn_objects(map)
 	
+	if not has_exit:
+		self.clear()
+		self.remove_child(minotaur)
+		self.remove_child(aster)
+	
+	return self
+
+func spawn_objects(map: Array):
 	#this isn't perfectly centered bc (16, 16) afaik is always a wall but. whatev
 	inst(map_to_local(Vector2i(15, 15)), aster)
 
@@ -60,14 +70,6 @@ func generate() -> labyrinth:
 		# also fuckkkkkk it only generates on first entry i need to move these somewhere else
 		var spawn: Array = mino_spawn_random.pick_random()
 		inst(map_to_local(Vector2i(spawn[0], spawn[1])), minotaur)
-	
-	# keep an eye out for this to make sure it works
-	if not has_exit:
-		self.clear()
-		self.remove_child(minotaur)
-		self.remove_child(aster)
-	
-	return self
 
 func initialize_maze() -> Array:
 	# initializes an array of arrays of zeroes to serve as base for map
