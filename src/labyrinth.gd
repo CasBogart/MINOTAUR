@@ -24,7 +24,6 @@ func _ready() -> void:
 		while not has_exit:
 			generate()
 		Flags.here_before = true
-	
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("map"):
@@ -35,9 +34,10 @@ func _input(_event: InputEvent) -> void:
 		
 		if Flags.map_opened:
 			Flags.map_opened = false
+			SignalBus.emit_signal("close_map", cam)
 		elif not Flags.map_opened:
 			Flags.map_opened = true
-		SignalBus.emit_signal("open_map", cam)
+			SignalBus.emit_signal("open_map", cam)
 
 func generate() -> labyrinth:
 	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
@@ -47,10 +47,9 @@ func generate() -> labyrinth:
 	draw_map(map)
 	spawn_objects(map)
 	
+	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok now this just loads an empty screen?????
 	if not has_exit:
-		self.clear()
-		self.remove_child(minotaur)
-		self.remove_child(aster)
+		self.queue_free()
 	
 	return self
 

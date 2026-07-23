@@ -3,7 +3,8 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var player_cam: Camera2D = $PlayerCam
-@onready var lantern = $Lantern
+
+@export var lantern: Lantern
 
 # i just made some bullshittttt
 
@@ -11,6 +12,7 @@ func _ready() -> void:
 	state_machine.init(self)
 	self.add_to_group("minotarget")
 	SignalBus.open_map.connect(map_open)
+	SignalBus.close_map.connect(map_close)
 	
 	# this is convoluted but makes sure the character is facing south when you load in
 	animated_sprite.play("walkforward")
@@ -29,11 +31,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 
 func map_open(camera: Camera2D):
-	# i don't even know but it looks like it works
-	lantern.hide_lantern(camera)
 	if not camera.enabled:
+		Flags.map_opened = true
 		camera.enabled = true
 		player_cam.enabled = false
-	else:
+
+func map_close(camera: Camera2D):
+	if camera.enabled:
+		Flags.map_opened = false
 		player_cam.enabled = true
 		camera.enabled = false
+	

@@ -26,7 +26,8 @@ FollowState = NodePath("StateMachine/MinoFollow")
 collision_mask = 5
 
 [node name="LanternCast" type="RayCast2D" parent="." unique_id=969582243]
-collision_mask = 4
+collision_mask = 260
+collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=855484312]
 shape = SubResource("CapsuleShape2D_xgclo")
@@ -87,7 +88,7 @@ IdleState = NodePath("../MinoIdle")
 metadata/_custom_type_script = "uid://bdg4sx6bwp0pv"
 
 [node name="FollowTimer" type="Timer" parent="StateMachine" unique_id=662837446]
-wait_time = 0.8
+wait_time = 0.5
 
 [node name="SearchArea" type="Area2D" parent="." unique_id=434927290]
 collision_layer = 256

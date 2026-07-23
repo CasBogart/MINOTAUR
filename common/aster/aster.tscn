@@ -114,11 +114,10 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Aster" type="CharacterBody2D" unique_id=1215084856 groups=["minotarget"]]
+[node name="Aster" type="CharacterBody2D" unique_id=1215084856 node_paths=PackedStringArray("lantern") groups=["minotarget"]]
 collision_mask = 260
 script = ExtResource("1_lwfef")
-
-[node name="Lantern" parent="." unique_id=210182222 instance=ExtResource("2_w5ep6")]
+lantern = NodePath("Lantern")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645203980]
 scale = Vector2(0.3, 0.3)
@@ -156,3 +155,5 @@ metadata/_custom_type_script = "uid://bwusqala3q71j"
 
 [node name="RunTimer" type="Timer" parent="StateMachine" unique_id=391597508]
 wait_time = 0.5
+
+[node name="Lantern" parent="." unique_id=210182222 instance=ExtResource("2_w5ep6")]
