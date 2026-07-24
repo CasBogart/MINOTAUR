@@ -5,12 +5,14 @@ class_name MinoFollow extends State
 @export var IdleState: State
 
 @onready var followTimer: Timer = $"../FollowTimer"
-var run_speed: int = 1250
+var run_speed: int = 1000
 var max_distance: int
 
 # this is just a slightly different pursue
 
 func enter():
+	if Flags.level == 3:
+		run_speed = 1200
 	max_distance = 1000
 	followTimer.start()
 

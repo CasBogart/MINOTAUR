@@ -8,6 +8,8 @@ class_name MinoPursue extends State
 var run_speed: int = 1500
 
 func enter():
+	if Flags.level == 3:
+		run_speed = 1750
 	parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
 	pursueTimer.start()
 

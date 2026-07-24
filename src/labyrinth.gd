@@ -7,6 +7,7 @@ enum cell_state {UNVISITED, POSSIBLE, VISITED}
 # didn't want to hardcode this but can't export it and onready it at the same time afaik
 @onready var size: int = 31
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+@onready var canvas: CanvasModulate = $CanvasModulate
 
 var has_exit: bool = false
 var aster = preload("res://common/aster/aster.tscn")
@@ -34,6 +35,9 @@ func generate() -> labyrinth:
 	draw_map(map)
 	spawn_objects(map)
 	
+	if Flags.level >= 2:
+		canvas.color = Color.BLACK
+	
 	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok now this just loads an empty screen?????
 	if not has_exit:
 		self.queue_free()
@@ -49,7 +53,7 @@ func spawn_objects(map: Array):
 		for i in map.size():
 			for j in map.size():
 				# add something to make sure not too close to player
-				if map[i][j] == cell_state.VISITED and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
+				if map[i][j] == cell_state.VISITED and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1 and (i <= 7 or i >= 23 or j <= 7 or j >= 23):
 					mino_spawn_random.append([i, j])
 		
 		# might be better to make sure this is in a certain vicinity to the player
