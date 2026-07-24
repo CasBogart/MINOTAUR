@@ -57,13 +57,14 @@ metadata/_custom_type_script = "uid://dn56s3sxvwitd"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=499074702]
 offset = Vector2(256, 256)
 enabled = false
-zoom = Vector2(0.75, 0.75)
+zoom = Vector2(0.65, 0.65)
 editor_draw_screen = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1566983077]
 color = Color(0, 0, 0, 1)
 
 [node name="Fog" type="TileMapLayer" parent="." unique_id=1554258463]
+visible = false
 z_index = 1
 enabled = false
 tile_set = SubResource("TileSet_e2clf")

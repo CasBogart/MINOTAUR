@@ -22,12 +22,14 @@ func _input(_event: InputEvent) -> void:
 			light.enabled = false
 
 func hide_lantern(_cam: Camera2D):
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	self.visible = false
 	self.monitoring = false
 	self.monitorable = false
 
 # don't automatically turn on 
 func show_lantern(_cam: Camera2D):
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	self.visible = true
 	self.monitoring = true
 	self.monitorable = true

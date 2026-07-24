@@ -14,10 +14,12 @@ enum cell_state {UNVISITED, POSSIBLE, VISITED}
 var has_exit: bool = false
 var aster = preload("res://common/aster/aster.tscn")
 var minotaur = preload("res://common/minotaur/minotaur.tscn")
+var exit = preload("res://common/exit/exit.tscn")
 
-func inst(pos: Vector2, object: Resource):
+func inst(pos: Vector2, object: Resource, rot: float = 0):
 	var instance = object.instantiate()
 	instance.position = pos
+	instance.rotation = deg_to_rad(rot)
 	add_child(instance)
 
 func _ready() -> void:
@@ -169,23 +171,28 @@ func find_possible_exit(map: Array):
 	
 	for i in map.size():
 		for j in map.size():
-			if map[i][j] == cell_state.VISITED and ((i == 1 or i == 49) or (j == 1 or j == 49)) and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
+			if map[i][j] == cell_state.VISITED and (i == 1 or i == 29 or j == 1 or j == 29) and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1:
 				possible_exit.append([i, j])
 	
 	if possible_exit.size() < 1:
 		return
 	
-	# this is still broken
+	
 	var exit_neighbor: Array = possible_exit[rng.randi_range(0, possible_exit.size() - 1)]
-	# this is the best i can be bothered to do it
+	print(possible_exit)
+	
 	if exit_neighbor[0] == 1:
 		map[0][exit_neighbor[1]] = cell_state.VISITED
-	elif exit_neighbor[0] == 49:
-		map[50][exit_neighbor[1]] = cell_state.VISITED
+		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(8, -24), exit, 180)
+	elif exit_neighbor[0] == 29:
+		map[30][exit_neighbor[1]] = cell_state.VISITED
+		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-8, 24), exit)
 	elif exit_neighbor[1] == 1:
 		map[exit_neighbor[0]][0] = cell_state.VISITED
-	elif exit_neighbor[1] == 49:
-		map[exit_neighbor[0]][50] = cell_state.VISITED
+		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(24, 8), exit, 270)
+	elif exit_neighbor[1] == 29:
+		map[exit_neighbor[0]][30] = cell_state.VISITED
+		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-24, -8), exit, 90)
 	
 	has_exit = true
 
