@@ -103,8 +103,8 @@ func initialize_maze() -> Array:
 	return maze
 
 func initialize_fog():
-	for i in size:
-		for j in size:
+	for i in range(-5, size + 5):
+		for j in range(-5, size + 5):
 			fog.set_cell(Vector2i(i, j), 0, Vector2i(0, 0))
 
 func random_coordinate(map_size: int) -> Array:
@@ -179,7 +179,6 @@ func find_possible_exit(map: Array):
 	
 	
 	var exit_neighbor: Array = possible_exit[rng.randi_range(0, possible_exit.size() - 1)]
-	print(possible_exit)
 	
 	if exit_neighbor[0] == 1:
 		map[0][exit_neighbor[1]] = cell_state.VISITED

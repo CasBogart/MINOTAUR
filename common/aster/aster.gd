@@ -14,6 +14,10 @@ func _ready() -> void:
 	SignalBus.open_map.connect(map_open)
 	SignalBus.close_map.connect(map_close)
 	
+	set_collision_layer_value(1, true)
+	set_collision_mask_value(3, true)
+	set_collision_mask_value(9, true)
+	
 	# this is convoluted but makes sure the character is facing south when you load in
 	animated_sprite.play("walkforward")
 	animated_sprite.set_frame(1)

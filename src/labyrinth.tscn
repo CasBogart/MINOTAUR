@@ -64,7 +64,6 @@ editor_draw_screen = false
 color = Color(0, 0, 0, 1)
 
 [node name="Fog" type="TileMapLayer" parent="." unique_id=1554258463]
-visible = false
 z_index = 1
 enabled = false
 tile_set = SubResource("TileSet_e2clf")
