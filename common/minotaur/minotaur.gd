@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var lantern_raycast: RayCast2D = $LanternCast
 @onready var search_area: Area2D = $SearchArea
 @onready var search_timer: Timer = $SearchTimer
+@onready var distract_timer: Timer = $DistractTimer
 @onready var state_machine: StateMachine = $StateMachine
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -43,10 +44,13 @@ func _on_search_timer_timeout() -> void:
 	
 	if current_raycast_collider is CharacterBody2D and (current_raycast_collider.lantern.light.enabled or current_raycast_collider.velocity > Vector2(0, 0)) and not state_machine.current_state == PursueState:
 		state_machine.change_state(PursueState)
-	#### HERE ####################
-	elif current_lantern_raycast_collider is Lantern and current_lantern_raycast_collider.light.enabled:
+	elif current_lantern_raycast_collider is Lantern and current_lantern_raycast_collider.light.enabled and not Flags.mino_distracted:
 		lantern_following = true
 		SignalBus.emit_signal("lantern_follow", current_lantern_raycast_collider.position)
+
+# make sure this works
+func _on_distract_timer_timeout() -> void:
+	Flags.mino_distracted = false
 
 ## these should really be the same function but idc
 func player_follow(pos: Vector2):

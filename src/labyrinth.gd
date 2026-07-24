@@ -8,6 +8,7 @@ enum cell_state {UNVISITED, POSSIBLE, VISITED}
 @onready var size: int = 31
 @onready var cam: Camera2D = $Camera2D
 @onready var dark: CanvasModulate = $CanvasModulate
+@onready var fog: TileMapLayer = $Fog
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var has_exit: bool = false
@@ -20,10 +21,13 @@ func inst(pos: Vector2, object: Resource):
 	add_child(instance)
 
 func _ready() -> void:
+	print(rng)
 	if not Flags.here_before:
 		while not has_exit:
 			generate()
 		Flags.here_before = true
+	SignalBus.open_map.connect(enable_fog)
+	SignalBus.close_map.connect(disable_fog)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("map"):
@@ -39,6 +43,10 @@ func _input(_event: InputEvent) -> void:
 			Flags.map_opened = true
 			SignalBus.emit_signal("open_map", cam)
 
+func _process(_delta: float) -> void:
+	if fog.get_cell_atlas_coords(local_to_map(get_tree().get_first_node_in_group("minotarget").position)) == Vector2i(0, 0):
+		fog.erase_cell(local_to_map(get_tree().get_first_node_in_group("minotarget").position))
+
 func generate() -> labyrinth:
 	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
 	var map: Array = initialize_maze()
@@ -46,6 +54,7 @@ func generate() -> labyrinth:
 	find_possible_exit(map)
 	draw_map(map)
 	spawn_objects(map)
+	initialize_fog()
 	
 	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok now this just loads an empty screen?????
 	if not has_exit:
@@ -75,7 +84,7 @@ func initialize_maze() -> Array:
 	var maze: Array = []
 	
 	maze.resize(size)
-	maze.fill(cell_state.UNVISITED)
+	maze.fill(0)
 	
 	for i in size:
 		var row: Array = []
@@ -90,6 +99,11 @@ func initialize_maze() -> Array:
 				maze[i][j] = cell_state.POSSIBLE
 	
 	return maze
+
+func initialize_fog():
+	for i in size:
+		for j in size:
+			fog.set_cell(Vector2i(i, j), 0, Vector2i(0, 0))
 
 func random_coordinate(map_size: int) -> Array:
 	# generates random coordinate exclusive of outer "ring"
@@ -186,3 +200,9 @@ func draw_map(map: Array):
 				cell_state.VISITED:
 					self.set_cell(Vector2i(i, j), 0, Vector2i(2, 0))
 	return
+
+func enable_fog(_cam: Camera2D):
+	fog.enabled = true
+
+func disable_fog(_cam: Camera2D):
+	fog.enabled = false

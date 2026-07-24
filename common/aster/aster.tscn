@@ -128,7 +128,7 @@ sprite_frames = SubResource("SpriteFrames_hlbus")
 animation = &"walkside"
 
 [node name="PlayerCam" type="Camera2D" parent="." unique_id=930273896]
-zoom = Vector2(12.5, 12.5)
+zoom = Vector2(3.5, 3.5)
 
 [node name="StateMachine" type="Node" parent="." unique_id=350882783 node_paths=PackedStringArray("INITIAL_STATE")]
 script = ExtResource("3_vr4qn")

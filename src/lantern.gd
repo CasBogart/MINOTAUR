@@ -14,19 +14,20 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if not Flags.map_opened:
 		if Input.is_action_just_released("lantern_interact") and not light.enabled:
+			light.visible = true
 			light.enabled = true
 		elif Input.is_action_just_released("lantern_interact") and light.enabled:
 			light_has_been_disabled = true
+			light.visible = false
 			light.enabled = false
 
 func hide_lantern(_cam: Camera2D):
 	self.visible = false
 	self.monitoring = false
 	self.monitorable = false
-	light.enabled = false
 
+# don't automatically turn on 
 func show_lantern(_cam: Camera2D):
 	self.visible = true
 	self.monitoring = true
 	self.monitorable = true
-	light.enabled = true

@@ -6,8 +6,9 @@
 radius = 2.5
 
 [sub_resource type="Gradient" id="Gradient_hikvm"]
+interpolation_mode = 1
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.6740088)
+offsets = PackedFloat32Array(0, 0.6762115)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m7ftc"]
@@ -29,7 +30,6 @@ energy = 1.75
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = SubResource("GradientTexture2D_m7ftc")
-texture_scale = 2.0
 
 [node name="Timer" type="Timer" parent="." unique_id=1833203135]
 wait_time = 45.0
