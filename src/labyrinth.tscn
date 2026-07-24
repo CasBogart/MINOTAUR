@@ -26,11 +26,10 @@ texture = ExtResource("1_bnp2g")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 2:0/0 = 0
-2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bnp2g")
 
 [sub_resource type="TileSet" id="TileSet_ilt5k"]
-occlusion_layer_0/light_mask = 0
+occlusion_layer_0/light_mask = 1
 occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 4
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_bnp2g")
@@ -40,31 +39,10 @@ physics_layer_1/physics_material = SubResource("PhysicsMaterial_e2clf")
 navigation_layer_0/layers = 4
 sources/0 = SubResource("TileSetAtlasSource_e2clf")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bnp2g"]
-texture = ExtResource("1_bnp2g")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_e2clf"]
-sources/0 = SubResource("TileSetAtlasSource_bnp2g")
-
 [node name="Labyrinth" type="TileMapLayer" unique_id=800161411]
 tile_set = SubResource("TileSet_ilt5k")
 script = ExtResource("1_iepnh")
 metadata/_custom_type_script = "uid://dn56s3sxvwitd"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=499074702]
-offset = Vector2(256, 256)
-enabled = false
-zoom = Vector2(0.65, 0.65)
-editor_draw_screen = false
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1566983077]
-color = Color(0, 0, 0, 1)
-
-[node name="Fog" type="TileMapLayer" parent="." unique_id=1554258463]
-visible = false
-z_index = 1
-enabled = false
-tile_set = SubResource("TileSet_e2clf")
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1067889468]
+color = Color(0.11764706, 0.11764706, 0.11764706, 1)

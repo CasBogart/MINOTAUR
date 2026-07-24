@@ -6,9 +6,6 @@ class_name labyrinth extends TileMapLayer
 enum cell_state {UNVISITED, POSSIBLE, VISITED}
 # didn't want to hardcode this but can't export it and onready it at the same time afaik
 @onready var size: int = 31
-@onready var cam: Camera2D = $Camera2D
-@onready var dark: CanvasModulate = $CanvasModulate
-@onready var fog: TileMapLayer = $Fog
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var has_exit: bool = false
@@ -23,43 +20,19 @@ func inst(pos: Vector2, object: Resource, rot: float = 0):
 	add_child(instance)
 
 func _ready() -> void:
+	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
 	print(rng)
 	if not Flags.here_before:
 		while not has_exit:
 			generate()
 		Flags.here_before = true
-	SignalBus.open_map.connect(enable_fog)
-	SignalBus.close_map.connect(disable_fog)
-
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("map"):
-		if dark.visible:
-			dark.visible = false
-		elif not dark.visible:
-			dark.visible = true
-		
-		if Flags.map_opened:
-			Flags.map_opened = false
-			SignalBus.emit_signal("close_map", cam)
-		elif not Flags.map_opened:
-			Flags.map_opened = true
-			SignalBus.emit_signal("open_map", cam)
-
-func _process(_delta: float) -> void:
-	if fog.get_cell_atlas_coords(local_to_map(get_tree().get_first_node_in_group("minotarget").position)) == Vector2i(0, 0):
-		fog.erase_cell(local_to_map(get_tree().get_first_node_in_group("minotarget").position))
-	
-	if Flags.input_paused:
-		SignalBus.emit_signal("close_map", cam)
 
 func generate() -> labyrinth:
-	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
 	var map: Array = initialize_maze()
 	hunt_and_kill(map)
 	find_possible_exit(map)
 	draw_map(map)
 	spawn_objects(map)
-	initialize_fog()
 	
 	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok now this just loads an empty screen?????
 	if not has_exit:
@@ -104,11 +77,6 @@ func initialize_maze() -> Array:
 				maze[i][j] = cell_state.POSSIBLE
 	
 	return maze
-
-func initialize_fog():
-	for i in range(-5, size + 5):
-		for j in range(-5, size + 5):
-			fog.set_cell(Vector2i(i, j), 0, Vector2i(0, 0))
 
 func random_coordinate(map_size: int) -> Array:
 	# generates random coordinate exclusive of outer "ring"
@@ -197,6 +165,7 @@ func find_possible_exit(map: Array):
 		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-24, -8), exit, 90)
 	
 	has_exit = true
+	Flags.exit_coords = map_to_local(Vector2(exit_neighbor[0], exit_neighbor[1]))
 
 func draw_map(map: Array):
 	for i in map.size():
@@ -209,9 +178,3 @@ func draw_map(map: Array):
 				cell_state.VISITED:
 					self.set_cell(Vector2i(i, j), 0, Vector2i(2, 0))
 	return
-
-func enable_fog(_cam: Camera2D):
-	fog.enabled = true
-
-func disable_fog(_cam: Camera2D):
-	fog.enabled = false

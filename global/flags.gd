@@ -1,12 +1,11 @@
 extends Node
 
-# 0 is tutorial, 1 minotaur, 2 dark, 3 no icon, 4 no map, 5 funny
+# 0 is tutorial, 1 minotaur, 2 dark, 3 mino faster, 4 funny
 var level: int = 1
 
 var here_before: bool = false
-var map_opened: bool = false
-var mino_distracted: bool = false
 var input_paused: bool = false
+var exit_coords: Vector2
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

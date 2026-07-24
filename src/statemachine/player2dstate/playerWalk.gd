@@ -18,7 +18,7 @@ func process_physics(delta) -> State:
 	if input_dir:
 		if Input.is_action_pressed("run"):
 			return RunState
-		parent.velocity = input_dir * 1200 * delta
+		parent.velocity = input_dir * 750 * delta
 	else:
 		return IdleState
 	
