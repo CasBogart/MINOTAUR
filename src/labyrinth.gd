@@ -48,6 +48,9 @@ func _input(_event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	if fog.get_cell_atlas_coords(local_to_map(get_tree().get_first_node_in_group("minotarget").position)) == Vector2i(0, 0):
 		fog.erase_cell(local_to_map(get_tree().get_first_node_in_group("minotarget").position))
+	
+	if Flags.input_paused:
+		SignalBus.emit_signal("close_map", cam)
 
 func generate() -> labyrinth:
 	rng.seed = hash(Time.get_datetime_string_from_system(false, true))

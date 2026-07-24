@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c4obf3sh13v7d"]
+[gd_scene format=4 uid="uid://c4obf3sh13v7d"]
 
 [ext_resource type="Texture2D" uid="uid://no6712l1o4im" path="res://src/gen_tiles.png" id="1_exfvm"]
 [ext_resource type="Script" uid="uid://bn82gnqsgrc3h" path="res://common/exit/exit.gd" id="2_tm0di"]
@@ -15,7 +15,7 @@ sources/0 = SubResource("TileSetAtlasSource_3miut")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exfvm"]
 
 [node name="Exit" type="TileMapLayer" unique_id=197649986]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAAAAEAAAACAAAAAAABAAEAAAACAAAAAAACAAEAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAFAAEAAAACAAAAAAAGAAEAAAACAAAAAAAHAAEAAAACAAAAAAAIAAEAAAACAAAAAAAJAAEAAAACAAAAAAAKAAEAAAACAAAAAAALAAEAAAACAAAAAAAMAAEAAAACAAAAAAANAAEAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_6hnuh")
 script = ExtResource("2_tm0di")
 

@@ -18,7 +18,6 @@ func init(parent):
 func process_input(event: InputEvent):
 	
 	# Change state upon detecting input
-	
 	var new_state = current_state.process_input(event)
 	
 	# These functions usually return NULL, unless an event occurs which would trigger a state change

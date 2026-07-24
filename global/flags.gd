@@ -6,6 +6,7 @@ var level: int = 1
 var here_before: bool = false
 var map_opened: bool = false
 var mino_distracted: bool = false
+var input_paused: bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
