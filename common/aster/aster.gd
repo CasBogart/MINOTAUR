@@ -16,6 +16,8 @@ var total_distance = 0
 # i just made some bullshittttt
 
 func _ready() -> void:
+	if Flags.level >= 2:
+		lantern.texture_scale = 0.5
 	state_machine.init(self)
 	self.add_to_group("minotarget")
 	SignalBus.escaped.connect(player_escape)

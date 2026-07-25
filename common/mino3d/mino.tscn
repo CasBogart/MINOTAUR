@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bj6rsyg2a76nv"]
+
+[ext_resource type="PackedScene" uid="uid://bfmuy7lsuvam0" path="res://common/mino3d/mino.glb" id="1_vcqk0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcqk0"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.5
+
+[node name="mino" unique_id=1518066497 instance=ExtResource("1_vcqk0")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(728567980) index="0" unique_id=1320820063]
+bones/0/position = Vector3(0.0020733862, -0.03069657, -1.9364132)
+bones/0/rotation = Quaternion(-0.5724606, -0.025829567, 0.030439066, 0.81895995)
+bones/1/rotation = Quaternion(0.08096138, 0.4086652, 0.9090731, -0.0049243974)
+bones/2/rotation = Quaternion(-0.61700904, -0.031134278, 0.032238223, 0.7856788)
+bones/3/rotation = Quaternion(0.6566193, 0.10771847, -0.09082159, 0.74094486)
+bones/4/rotation = Quaternion(0.4348953, 0.3533533, -0.026132118, 0.82784337)
+bones/6/rotation = Quaternion(-0.12609138, 0.26944613, 0.9546621, 0.010962514)
+bones/7/rotation = Quaternion(-0.43908504, -0.17656067, 0.102417156, 0.87495226)
+bones/8/rotation = Quaternion(0.7251622, -0.21324602, -0.060139094, 0.651958)
+bones/9/rotation = Quaternion(0.3290353, -0.30437973, 0.07215397, 0.89100087)
+bones/11/rotation = Quaternion(0.18419667, 0.040945277, 0.023924539, 0.9817447)
+bones/12/rotation = Quaternion(0.14369403, -0.013306889, 0.042460576, 0.9886213)
+bones/13/rotation = Quaternion(0.14500591, -0.010474355, 0.03825316, 0.98863554)
+bones/14/rotation = Quaternion(-0.60208267, -0.40115407, 0.58254623, -0.37042117)
+bones/15/rotation = Quaternion(0.3281669, 0.07530162, 0.2236994, 0.9146555)
+bones/16/rotation = Quaternion(0.013815994, 0.14855488, 0.37485525, 0.91499954)
+bones/18/rotation = Quaternion(-0.39745343, 0.12564266, -0.15464021, 0.8957294)
+bones/19/rotation = Quaternion(-0.052718807, -0.12736504, 0.082406364, 0.98701984)
+bones/21/rotation = Quaternion(0.5904079, -0.4067916, 0.57050544, 0.40057796)
+bones/22/rotation = Quaternion(0.19704433, 0.08545283, -0.426085, 0.87881905)
+bones/23/rotation = Quaternion(0.012886232, -0.12928338, -0.32973278, 0.93509144)
+
+[node name="minomodel" parent="Armature/Skeleton3D" index="0" unique_id=81105529]
+surface_material_override/0 = SubResource("StandardMaterial3D_vcqk0")

@@ -27,6 +27,7 @@ func _ready() -> void:
 		Flags.here_before = true
 	
 	spawn_objects(self)
+	add_tiles(self)
 	
 	if Flags.level >= 2:
 		canvas.color = Color.BLACK
@@ -191,3 +192,9 @@ func draw_map(map: Array):
 				cell_state.VISITED:
 					self.set_cell(Vector2i(i, j), 0, Vector2i(2, 0))
 	return
+
+func add_tiles(map: labyrinth):
+	for i in size:
+		for j in size:
+			if map.get_cell_atlas_coords(Vector2(i, j)) == Vector2i(2, 0):
+				self.set_cell(Vector2i(i, j), 1, Vector2i(0, 0))
