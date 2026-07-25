@@ -4,12 +4,12 @@ class_name MinoSearch extends State
 @export var PursueState: State
 @export var FollowState: State
 
-var search_speed: int = 800
+var search_speed: int = 800 + (Flags.level * 150)
 
 func enter():
 	parent.nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
-	parent.nav_agent.target_position.x += randi_range(-70, 70)
-	parent.nav_agent.target_position.y += randi_range(-70, 70)
+	parent.nav_agent.target_position.x += randi_range(-50, 50)
+	parent.nav_agent.target_position.y += randi_range(-50, 50)
 
 func exit():
 	pass

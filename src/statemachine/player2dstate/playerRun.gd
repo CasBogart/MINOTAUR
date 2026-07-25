@@ -8,8 +8,10 @@ class_name PlayerRun extends State
 func enter():
 	SignalBus.emit_signal("player_running", parent.position)
 	run_timer.start()
+	Flags.player_run_state = true
 
 func exit():
+	Flags.player_run_state = false
 	run_timer.stop()
 
 func process_input(_event: InputEvent) -> State:

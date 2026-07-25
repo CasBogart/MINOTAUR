@@ -4,7 +4,7 @@ class_name MinoFollow extends State
 @export var PursueState: State
 @export var IdleState: State
 
-@onready var followTimer: Timer = $"../FollowTimer"
+@onready var follow_timer: Timer = $"../FollowTimer"
 var run_speed: int = 1000
 var max_distance: int
 
@@ -14,10 +14,9 @@ func enter():
 	if Flags.level == 3:
 		run_speed = 1200
 	max_distance = 1000
-	followTimer.start()
 
 func exit():
-	pass
+	follow_timer.stop()
 
 func process_input(_event: InputEvent) -> State:
 	return null

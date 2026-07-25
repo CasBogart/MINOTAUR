@@ -5,6 +5,7 @@ var level: int = 1
 
 var here_before: bool = false
 var input_paused: bool = false
+var player_run_state: bool = false
 var exit_coords: Vector2
 
 func _ready():
