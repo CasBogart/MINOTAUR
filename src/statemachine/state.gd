@@ -1,6 +1,6 @@
 class_name State extends Node
 
-var parent: Node2D
+var parent: Node
 
 
 func enter(): # What the state does when it is entered

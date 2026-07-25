@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c87tcuqe2cwad"]
+
+[ext_resource type="PackedScene" uid="uid://bfmuy7lsuvam0" path="res://common/mino3d/mino.glb" id="1_ipmei"]
+[ext_resource type="Script" uid="uid://cygpqh6dlaivy" path="res://common/mino3d/mino3d.gd" id="2_52noi"]
+[ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="3_akby6"]
+[ext_resource type="Script" uid="uid://di3dueafs3utu" path="res://src/statemachine/mino3dstate/minoIdle3D.gd" id="4_107i7"]
+[ext_resource type="Script" uid="uid://b0h2k0e2o3w0f" path="res://src/statemachine/mino3dstate/minoFollow3D.gd" id="5_5vwer"]
+[ext_resource type="Script" uid="uid://ckeco28pf1a1a" path="res://src/statemachine/mino3dstate/minoPursue3D.gd" id="6_wlolp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vwer"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akby6"]
+radius = 1.5
+height = 6.0
+
+[node name="mino" unique_id=997227101 instance=ExtResource("1_ipmei")]
+script = ExtResource("2_52noi")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1359290851) index="0" unique_id=456041630]
+bones/0/position = Vector3(0.09234756, -0.0024526417, -2.197361)
+bones/0/rotation = Quaternion(-0.56855744, 0.026756786, -0.03419511, 0.821497)
+bones/1/rotation = Quaternion(0.09521417, 0.12368464, 0.9874364, -0.024614098)
+bones/2/rotation = Quaternion(-0.5288672, 0.018814897, 0.010117443, 0.84843576)
+bones/3/rotation = Quaternion(0.5673456, 0.12473435, -0.06318595, 0.81152195)
+bones/4/rotation = Quaternion(0.35468745, 0.2520677, -0.020809915, 0.9001253)
+bones/6/rotation = Quaternion(-0.06504126, 0.40910667, 0.91014236, 0.0065209013)
+bones/7/rotation = Quaternion(-0.13078952, -0.011759405, 0.01046897, 0.99128515)
+bones/8/rotation = Quaternion(0.6036608, -0.06242992, 0.13491824, 0.78325814)
+bones/9/rotation = Quaternion(0.18931961, -0.22216344, 0.076643474, 0.9533768)
+bones/11/rotation = Quaternion(0.14722705, -0.056971844, 0.037696328, 0.98674077)
+bones/12/rotation = Quaternion(0.12026281, -0.06878816, 0.020790301, 0.99013776)
+bones/13/rotation = Quaternion(0.12179482, -0.06746984, 0.012695894, 0.9901781)
+bones/14/rotation = Quaternion(-0.48697382, -0.47024542, 0.6353412, -0.37157428)
+bones/15/rotation = Quaternion(0.20572196, -0.23893738, 0.3778477, 0.8705278)
+bones/16/rotation = Quaternion(0.027219674, -0.00022002027, 0.38528752, 0.92239505)
+bones/18/rotation = Quaternion(-0.22815888, 0.17456956, -0.13367975, 0.94847184)
+bones/19/rotation = Quaternion(-0.23890659, -0.06242058, 0.05894108, 0.96724004)
+bones/21/rotation = Quaternion(0.5597481, -0.44877583, 0.53332955, 0.44815382)
+bones/22/rotation = Quaternion(0.31673464, 0.053927243, -0.18662906, 0.9284076)
+bones/23/rotation = Quaternion(0.03521298, 0.000106139094, -0.4919424, 0.8699153)
+
+[node name="minomodel" parent="Armature/Skeleton3D" index="0" unique_id=811554219]
+surface_material_override/0 = SubResource("StandardMaterial3D_5vwer")
+
+[node name="StateMachine" type="Node" parent="." index="2" unique_id=646827052 node_paths=PackedStringArray("INITIAL_STATE")]
+script = ExtResource("3_akby6")
+INITIAL_STATE = NodePath("MinoIdle3D")
+metadata/_custom_type_script = "uid://bmy4fljjiwts2"
+
+[node name="MinoIdle3D" type="Node" parent="StateMachine" index="0" unique_id=593236993]
+script = ExtResource("4_107i7")
+metadata/_custom_type_script = "uid://di3dueafs3utu"
+
+[node name="MinoFollow3D" type="Node" parent="StateMachine" index="1" unique_id=50757397]
+script = ExtResource("5_5vwer")
+metadata/_custom_type_script = "uid://b0h2k0e2o3w0f"
+
+[node name="MinoPursue3D" type="Node" parent="StateMachine" index="2" unique_id=1338381383]
+script = ExtResource("6_wlolp")
+metadata/_custom_type_script = "uid://ckeco28pf1a1a"
+
+[node name="Area3D" type="Area3D" parent="." index="3" unique_id=300390743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.97527, -0.026084423)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=2126086152]
+shape = SubResource("CapsuleShape3D_akby6")
