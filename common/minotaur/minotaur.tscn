@@ -35,7 +35,7 @@ shape = SubResource("CapsuleShape2D_xgclo")
 texture = ExtResource("1_7tlxx")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1302296990]
-path_desired_distance = 1.0
+path_desired_distance = 5.0
 target_desired_distance = 15.0
 navigation_layers = 4
 path_postprocessing = 1

@@ -164,19 +164,19 @@ func find_possible_exit(map: Array):
 	if exit_neighbor[0] == 1:
 		map[0][exit_neighbor[1]] = cell_state.VISITED
 		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(8, -24), exit, 180)
-		Flags.exit_coords = map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(8, -24)
+		Flags.exit_coords = map_to_local(Vector2i(0, exit_neighbor[1]))
 	elif exit_neighbor[0] == 29:
 		map[30][exit_neighbor[1]] = cell_state.VISITED
 		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-8, 24), exit)
-		Flags.exit_coords = map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-8, 24)
+		Flags.exit_coords = map_to_local(Vector2i(30, exit_neighbor[1]))
 	elif exit_neighbor[1] == 1:
 		map[exit_neighbor[0]][0] = cell_state.VISITED
 		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(24, 8), exit, 270)
-		Flags.exit_coords = map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(24, 8)
+		Flags.exit_coords = map_to_local(Vector2i(exit_neighbor[0], 0))
 	elif exit_neighbor[1] == 29:
 		map[exit_neighbor[0]][30] = cell_state.VISITED
 		inst(map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-24, -8), exit, 90)
-		Flags.exit_coords = map_to_local(Vector2i(exit_neighbor[0], exit_neighbor[1])) - Vector2(-24, -8)
+		Flags.exit_coords = map_to_local(Vector2i(exit_neighbor[0], 30))
 	
 	has_exit = true
 

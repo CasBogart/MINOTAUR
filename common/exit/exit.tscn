@@ -20,7 +20,7 @@ tile_set = SubResource("TileSet_6hnuh")
 script = ExtResource("2_tm0di")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=544332018]
-position = Vector2(24, 24)
+position = Vector2(10, 24)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=361498873]
