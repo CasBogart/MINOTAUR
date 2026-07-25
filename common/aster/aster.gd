@@ -19,6 +19,7 @@ func _ready() -> void:
 	state_machine.init(self)
 	self.add_to_group("minotarget")
 	SignalBus.escaped.connect(player_escape)
+	SignalBus.game_over.connect(lose)
 	
 	# this is convoluted but makes sure the character is facing south when you load in
 	animated_sprite.play("walkforward")
@@ -49,11 +50,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			lantern.enabled = true
 
 func player_escape():
-	gui1.visible = false
-	gui2.visible = false
+	gui1.hide()
+	gui2.hide()
 	var tween = get_tree().create_tween()
 	await tween.tween_property(color, "color:a", 1.0, 2.0).finished
 
 func update_dist():
 	total_distance = int(floor((self.position - Flags.exit_coords).length()))
 	dist.text = str(total_distance)
+
+func lose():
+	velocity = Vector2(0, 0)
+	Flags.input_paused = true
+	gui1.hide()
+	gui2.hide()
+	var tween = get_tree().create_tween()
+	await tween.tween_property(color, "color:a", 1.0, 2.0).finished

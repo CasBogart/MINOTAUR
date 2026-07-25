@@ -21,22 +21,23 @@ func inst(pos: Vector2, object: Resource, rot: float = 0):
 	add_child(instance)
 
 func _ready() -> void:
-	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
-	print(rng)
 	if not Flags.here_before:
 		while not has_exit:
 			generate()
 		Flags.here_before = true
+	
+	spawn_objects(self)
+	
+	if Flags.level >= 2:
+		canvas.color = Color.BLACK
 
 func generate() -> labyrinth:
+	rng.seed = hash(Time.get_datetime_string_from_system(false, true))
+	print(rng)
 	var map: Array = initialize_maze()
 	hunt_and_kill(map)
 	find_possible_exit(map)
 	draw_map(map)
-	spawn_objects(map)
-	
-	if Flags.level >= 2:
-		canvas.color = Color.BLACK
 	
 	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok now this just loads an empty screen?????
 	if not has_exit:
@@ -44,19 +45,24 @@ func generate() -> labyrinth:
 	
 	return self
 
-func spawn_objects(map: Array):
+func spawn_objects(map: labyrinth):
 	#this isn't perfectly centered bc (16, 16) afaik is always a wall but. whatev
 	inst(map_to_local(Vector2i(15, 15)), aster)
 
-	if 0 < Flags.level and Flags.level < 5:
+
+# this many nested conditionals is really good for the computer
+	if 0 < Flags.level and Flags.level < 4:
 		var mino_spawn_random: Array = []
-		for i in map.size():
-			for j in map.size():
-				# add something to make sure not too close to player
-				if map[i][j] == cell_state.VISITED and check_neighbors([i, j], map, cell_state.VISITED, 1).size() == 1 and (i <= 7 or i >= 23 or j <= 7 or j >= 23):
-					mino_spawn_random.append([i, j])
+		for i in size:
+			for j in size:
+				if map.get_cell_atlas_coords(Vector2(i, j)) == Vector2i(2, 0) and (i <= 7 or i >= 23 or j <= 7 or j >= 23):
+					var surrounding: Array = []
+					for cell in map.get_surrounding_cells(Vector2(i, j)):
+						if get_cell_atlas_coords(cell) == Vector2i(2, 0):
+							surrounding.append(cell)
+					if surrounding.size() == 1:
+						mino_spawn_random.append([i, j])
 		
-		# might be better to make sure this is in a certain vicinity to the player
 		# also fuckkkkkk it only generates on first entry i need to move these somewhere else
 		var spawn: Array = mino_spawn_random.pick_random()
 		inst(map_to_local(Vector2i(spawn[0], spawn[1])), minotaur)

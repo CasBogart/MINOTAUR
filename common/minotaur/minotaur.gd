@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var search_timer: Timer = $SearchTimer
 @onready var distract_timer: Timer = $DistractTimer
 @onready var state_machine: StateMachine = $StateMachine
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var collider: Area2D = $DeadEndCollider
 
 @export var PursueState: State
 @export var FollowState: State
@@ -48,3 +48,7 @@ func player_follow(pos: Vector2):
 		state_machine.change_state(FollowState)
 	elif not state_machine.current_state == PursueState:
 		nav_agent.target_position = pos
+
+func _on_dead_end_collider_body_entered(body: Node2D) -> void:
+	if body.is_in_group("minotarget"):
+		SignalBus.emit_signal("game_over")

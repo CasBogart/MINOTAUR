@@ -17,7 +17,7 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(_delta) -> State:
-	if idle_timer.is_stopped():
+	if idle_timer.is_stopped() and not Flags.input_paused:
 		return SearchState
 	
 	return null

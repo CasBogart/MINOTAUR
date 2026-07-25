@@ -151,7 +151,9 @@ shape = SubResource("CapsuleShape2D_syoci")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1218898858]
 sprite_frames = SubResource("SpriteFrames_hlbus")
-animation = &"walkside"
+animation = &"walkforward"
+frame = 1
+flip_h = true
 
 [node name="PlayerCam" type="Camera2D" parent="." unique_id=930273896]
 zoom = Vector2(3.5, 3.5)

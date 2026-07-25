@@ -15,6 +15,9 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_s5gt7"]
 radius = 100.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4nr3n"]
+radius = 6.0
+
 [node name="Minotaur" type="CharacterBody2D" unique_id=1049601149 node_paths=PackedStringArray("PursueState", "FollowState")]
 collision_layer = 8
 collision_mask = 4
@@ -98,7 +101,13 @@ wait_time = 0.2
 [node name="DistractTimer" type="Timer" parent="." unique_id=584870512]
 wait_time = 20.0
 
+[node name="DeadEndCollider" type="Area2D" parent="." unique_id=324060957]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadEndCollider" unique_id=236905678]
+shape = SubResource("CircleShape2D_4nr3n")
+
 [connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]
 [connection signal="timeout" from="SearchTimer" to="." method="_on_search_timer_timeout"]
 [connection signal="timeout" from="DistractTimer" to="." method="_on_distract_timer_timeout"]
+[connection signal="body_entered" from="DeadEndCollider" to="." method="_on_dead_end_collider_body_entered"]

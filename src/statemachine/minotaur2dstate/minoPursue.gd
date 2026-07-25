@@ -31,6 +31,9 @@ func process_physics(delta) -> State:
 		# there's an issue rn where after following it just starts idling, this is mostly bc there isn't a player death implemented yet
 		return IdleState
 	
+	if parent.nav_agent.is_target_reached():
+		SignalBus.emit_signal("game_over")
+	
 	return null
 
 func process(_delta) -> State:
