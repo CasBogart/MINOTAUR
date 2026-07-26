@@ -5,7 +5,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_woe1u"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_woe1u"]
+
 [node name="MinotaurScene3d" type="CharacterBody3D" unique_id=560275607]
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_woe1u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1778451585]
@@ -14,29 +18,22 @@ shape = SubResource("CapsuleShape3D_woe1u")
 
 [node name="mino" parent="." unique_id=997227101 instance=ExtResource("2_he2e2")]
 
-[node name="Skeleton3D" parent="mino/Armature" parent_id_path=PackedInt32Array(997227101, 2050846268) index="0" unique_id=307459624]
-bones/0/position = Vector3(0.121273234, 0.028476685, -2.1762643)
-bones/0/rotation = Quaternion(-0.5888269, -0.030957736, 0.017442614, 0.8074777)
-bones/1/rotation = Quaternion(0.0987737, 0.3258399, 0.9399998, -0.021737173)
-bones/2/rotation = Quaternion(-0.29592237, -0.047055796, 0.023572221, 0.9537611)
-bones/3/rotation = Quaternion(0.57954305, 0.110057816, -0.091275014, 0.8023006)
-bones/4/rotation = Quaternion(0.2397753, 0.23691072, -0.06006315, 0.9395603)
-bones/6/rotation = Quaternion(-0.13778344, 0.39447233, 0.90820247, 0.023993403)
-bones/7/rotation = Quaternion(-0.41529062, 0.043249216, -0.09173504, 0.90401775)
-bones/8/rotation = Quaternion(0.6011157, -0.07225768, 0.16325934, 0.7789641)
-bones/9/rotation = Quaternion(0.24079421, -0.24192467, 0.061911494, 0.9379007)
-bones/11/rotation = Quaternion(0.080934234, 0.027842807, 0.004379268, 0.99632084)
-bones/12/rotation = Quaternion(0.012506423, 0.0038228445, -0.0007142038, 0.9999142)
-bones/13/rotation = Quaternion(0.012519955, 0.00373563, -0.0007561354, 0.99991435)
-bones/14/rotation = Quaternion(-0.5839155, -0.4243788, 0.5486998, -0.42175105)
-bones/15/rotation = Quaternion(0.3778282, 0.029133162, 0.09490416, 0.92053807)
-bones/16/rotation = Quaternion(0.057412002, -0.00014373752, 0.8122615, 0.5804611)
-bones/18/rotation = Quaternion(-0.075815625, 0.0043602986, 0.0072345003, 0.9970861)
-bones/19/rotation = Quaternion(-0.33593678, 0.02256886, 0.0023459715, 0.94161123)
-bones/21/rotation = Quaternion(0.5564633, -0.43774432, 0.57567304, 0.40905902)
-bones/22/rotation = Quaternion(0.40625662, -0.06473722, -0.062757276, 0.90929997)
-bones/23/rotation = Quaternion(0.059137195, 6.674699e-05, -0.8259809, 0.56058764)
-
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=849908531]
+collision_mask = 5
+
+[node name="SearchTimer" type="Timer" parent="." unique_id=1855159408]
+wait_time = 0.2
+
+[node name="DistractTimer" type="Timer" parent="." unique_id=1119950826]
+wait_time = 20.0
+
+[node name="Area3D" type="Area3D" parent="." unique_id=793150889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1393122268]
+shape = SubResource("BoxShape3D_woe1u")
+
+[connection signal="timeout" from="SearchTimer" to="." method="_on_search_timer_timeout"]
+[connection signal="timeout" from="DistractTimer" to="." method="_on_distract_timer_timeout"]
 
 [editable path="mino"]

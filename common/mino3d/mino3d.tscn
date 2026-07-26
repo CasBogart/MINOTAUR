@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="3_akby6"]
 [ext_resource type="Script" uid="uid://di3dueafs3utu" path="res://src/statemachine/mino3dstate/minoIdle3D.gd" id="4_107i7"]
 [ext_resource type="Script" uid="uid://b0h2k0e2o3w0f" path="res://src/statemachine/mino3dstate/minoFollow3D.gd" id="5_5vwer"]
+[ext_resource type="Script" uid="uid://if138mqytby0" path="res://src/statemachine/mino3dstate/minoSearch3D.gd" id="6_5vwer"]
 [ext_resource type="Script" uid="uid://ckeco28pf1a1a" path="res://src/statemachine/mino3dstate/minoPursue3D.gd" id="6_wlolp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vwer"]
@@ -45,8 +46,9 @@ script = ExtResource("3_akby6")
 INITIAL_STATE = NodePath("MinoIdle3D")
 metadata/_custom_type_script = "uid://bmy4fljjiwts2"
 
-[node name="MinoIdle3D" type="Node" parent="StateMachine" index="0" unique_id=593236993]
+[node name="MinoIdle3D" type="Node" parent="StateMachine" index="0" unique_id=593236993 node_paths=PackedStringArray("SearchState")]
 script = ExtResource("4_107i7")
+SearchState = NodePath("../MinoSearch3D")
 metadata/_custom_type_script = "uid://di3dueafs3utu"
 
 [node name="MinoFollow3D" type="Node" parent="StateMachine" index="1" unique_id=50757397]
@@ -56,5 +58,17 @@ metadata/_custom_type_script = "uid://b0h2k0e2o3w0f"
 [node name="MinoPursue3D" type="Node" parent="StateMachine" index="2" unique_id=1338381383]
 script = ExtResource("6_wlolp")
 metadata/_custom_type_script = "uid://ckeco28pf1a1a"
+
+[node name="MinoSearch3D" type="Node" parent="StateMachine" index="3" unique_id=1626752908]
+script = ExtResource("6_5vwer")
+metadata/_custom_type_script = "uid://if138mqytby0"
+
+[node name="IdleTimer" type="Timer" parent="StateMachine" index="4" unique_id=1482463276]
+
+[node name="FollowTimer" type="Timer" parent="StateMachine" index="5" unique_id=1860648953]
+wait_time = 0.5
+
+[node name="PursueTimer" type="Timer" parent="StateMachine" index="6" unique_id=527348197]
+wait_time = 1.5
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3" unique_id=1757935562]

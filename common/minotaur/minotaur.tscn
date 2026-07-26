@@ -77,7 +77,6 @@ FollowState = NodePath("../MinoFollow")
 metadata/_custom_type_script = "uid://cnvnurxgq8nva"
 
 [node name="IdleTimer" type="Timer" parent="StateMachine" unique_id=2094506934]
-one_shot = true
 
 [node name="MinoFollow" type="Node" parent="StateMachine" unique_id=656594998 node_paths=PackedStringArray("SearchState", "PursueState", "IdleState")]
 script = ExtResource("7_4nr3n")
@@ -106,6 +105,7 @@ wait_time = 20.0
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadEndCollider" unique_id=236905678]
 shape = SubResource("CircleShape2D_4nr3n")
 
+[connection signal="timeout" from="StateMachine/IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="StateMachine/FollowTimer" to="." method="_on_follow_timer_timeout"]
 [connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]
