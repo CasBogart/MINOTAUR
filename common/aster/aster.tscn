@@ -132,12 +132,28 @@ script = ExtResource("1_lwfef")
 
 [node name="Gui" parent="." unique_id=341218558 instance=ExtResource("3_w5ep6")]
 
-[node name="Label" parent="Gui/Control/ColorRect" parent_id_path=PackedInt32Array(341218558, 1064203956) index="0" unique_id=1910366806]
+[node name="Control" parent="Gui" index="0" unique_id=441347736]
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" parent="Gui/Control" index="0" unique_id=1064203956]
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="Gui/Control/ColorRect" index="0" unique_id=1910366806]
 text = "DISTANCE TO EXIT"
+metadata/_edit_use_anchors_ = true
 
 [node name="Gui2" parent="." unique_id=378458546 instance=ExtResource("3_w5ep6")]
 offset = Vector2(0, 320)
 transform = Transform2D(1, 0, 0, 1, 0, 320)
+
+[node name="Control" parent="Gui2" index="0" unique_id=441347736]
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" parent="Gui2/Control" index="0" unique_id=1064203956]
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="Gui2/Control/ColorRect" index="0" unique_id=1910366806]
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=173227549]
 z_index = 2

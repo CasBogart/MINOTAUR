@@ -1,6 +1,6 @@
 extends Node3D
 
-var mino3D = preload("res://common/mino3d/minotaurScene3D.tscn")
+var aster3D = preload("res://common/aster3D/aster3D.tscn")
 
 func inst(pos: Vector3, object: Resource, rot = 0):
 	var instance = object.instantiate()
@@ -10,4 +10,4 @@ func inst(pos: Vector3, object: Resource, rot = 0):
 	add_child(instance)
 
 func _ready():
-	inst(Vector3(0, 0, 0), mino3D, Vector3(0, 0, 0))
+	inst(Vector3(0, 0, 0), aster3D, Vector3(0, 0, 0))

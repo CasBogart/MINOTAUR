@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dl2bggv7sug74"]
+
+[ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="1_4hsur"]
+[ext_resource type="Script" uid="uid://oj71xpdyvdrd" path="res://common/aster3D/aster_3d.gd" id="1_tn6x7"]
+[ext_resource type="Script" uid="uid://cba801v6gshbv" path="res://src/statemachine/player3dstate/playerIdle3D.gd" id="3_6uq0v"]
+[ext_resource type="PackedScene" uid="uid://bh23ev7lrd1ay" path="res://common/ui/distance/gui.tscn" id="4_jojpg"]
+[ext_resource type="Script" uid="uid://7vcfjnp4nhav" path="res://src/statemachine/player3dstate/playerWalk3D.gd" id="4_o4egf"]
+[ext_resource type="Script" uid="uid://ssfxs1fikhgh" path="res://src/statemachine/player3dstate/playerRun3D.gd" id="5_nc2bc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tn6x7"]
+
+[node name="Aster3d" type="CharacterBody3D" unique_id=1607059063]
+script = ExtResource("1_tn6x7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=366718517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_tn6x7")
+
+[node name="StateMachine" type="Node" parent="." unique_id=73257157 node_paths=PackedStringArray("INITIAL_STATE")]
+script = ExtResource("1_4hsur")
+INITIAL_STATE = NodePath("PlayerIdle3D")
+metadata/_custom_type_script = "uid://bmy4fljjiwts2"
+
+[node name="PlayerIdle3D" type="Node" parent="StateMachine" unique_id=942791408 node_paths=PackedStringArray("WalkState", "RunState")]
+script = ExtResource("3_6uq0v")
+WalkState = NodePath("../PlayerWalk3D")
+RunState = NodePath("../PlayerRun3D")
+metadata/_custom_type_script = "uid://cba801v6gshbv"
+
+[node name="PlayerWalk3D" type="Node" parent="StateMachine" unique_id=1444428374 node_paths=PackedStringArray("RunState", "IdleState")]
+script = ExtResource("4_o4egf")
+RunState = NodePath("../PlayerRun3D")
+IdleState = NodePath("../PlayerIdle3D")
+metadata/_custom_type_script = "uid://7vcfjnp4nhav"
+
+[node name="PlayerRun3D" type="Node" parent="StateMachine" unique_id=1255273260 node_paths=PackedStringArray("WalkState", "IdleState")]
+script = ExtResource("5_nc2bc")
+WalkState = NodePath("../PlayerWalk3D")
+IdleState = NodePath("../PlayerIdle3D")
+metadata/_custom_type_script = "uid://ssfxs1fikhgh"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=86544378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+omni_range = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1859489774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Gui" parent="." unique_id=341218558 instance=ExtResource("4_jojpg")]
+
+[node name="Control" parent="Gui" index="0" unique_id=441347736]
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" parent="Gui/Control" index="0" unique_id=1064203956]
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="Gui/Control/ColorRect" index="0" unique_id=1910366806]
+text = "DISTANCE TO EXIT"
+metadata/_edit_use_anchors_ = true
+
+[node name="Gui2" parent="." unique_id=2102291787 instance=ExtResource("4_jojpg")]
+offset = Vector2(0, 320)
+transform = Transform2D(1, 0, 0, 1, 0, 320)
+
+[node name="Control" parent="Gui2" index="0" unique_id=441347736]
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" parent="Gui2/Control" index="0" unique_id=1064203956]
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="Gui2/Control/ColorRect" index="0" unique_id=1910366806]
+metadata/_edit_use_anchors_ = true
+
+[editable path="Gui"]
+[editable path="Gui2"]

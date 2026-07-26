@@ -21,7 +21,8 @@ func process_input(_event: InputEvent) -> State:
 func process_physics(delta) -> State:
 	if not parent.nav_agent.is_navigation_finished():
 		var nav_point_direction = parent.to_local(parent.nav_agent.get_next_path_position()).normalized()
-		parent.velocity = nav_point_direction * search_speed * delta
+		parent.velocity.x = nav_point_direction.x * search_speed * delta
+		parent.velocity.z = nav_point_direction.y * search_speed * delta
 	elif parent.nav_agent.is_navigation_finished():
 		return IdleState
 	
