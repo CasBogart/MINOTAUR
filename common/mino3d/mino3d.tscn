@@ -15,7 +15,7 @@ emission = Color(1, 0, 0, 1)
 [node name="mino" unique_id=1224381015 instance=ExtResource("1_ipmei")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2050846268) index="0" unique_id=307459624]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(588347675) index="0" unique_id=1828249607]
 bones/0/position = Vector3(5.2505173e-05, -0.0116227865, -1.9836203)
 bones/0/rotation = Quaternion(-0.57240003, -0.027749863, 0.029620677, 0.81896937)
 bones/1/rotation = Quaternion(0.08321085, 0.44193473, 0.8930172, -0.017027821)
@@ -38,7 +38,7 @@ bones/21/rotation = Quaternion(0.57131875, -0.43206468, 0.55098516, 0.42817113)
 bones/22/rotation = Quaternion(0.07079255, 0.19978869, -0.3935066, 0.8945533)
 bones/23/rotation = Quaternion(0.025446737, 0.00011321483, -0.35554367, 0.9343133)
 
-[node name="minomodel" parent="Armature/Skeleton3D" index="0" unique_id=1512867746]
+[node name="minomodel" parent="Armature/Skeleton3D" index="0" unique_id=1922504385]
 surface_material_override/0 = SubResource("StandardMaterial3D_5vwer")
 
 [node name="StateMachine" type="Node" parent="." index="2" unique_id=646827052 node_paths=PackedStringArray("INITIAL_STATE")]
@@ -46,24 +46,36 @@ script = ExtResource("3_akby6")
 INITIAL_STATE = NodePath("MinoIdle3D")
 metadata/_custom_type_script = "uid://bmy4fljjiwts2"
 
-[node name="MinoIdle3D" type="Node" parent="StateMachine" index="0" unique_id=593236993 node_paths=PackedStringArray("SearchState")]
+[node name="MinoIdle3D" type="Node" parent="StateMachine" index="0" unique_id=593236993 node_paths=PackedStringArray("SearchState", "PursueState", "FollowState")]
 script = ExtResource("4_107i7")
 SearchState = NodePath("../MinoSearch3D")
+PursueState = NodePath("../MinoPursue3D")
+FollowState = NodePath("../MinoFollow3D")
 metadata/_custom_type_script = "uid://di3dueafs3utu"
 
-[node name="MinoFollow3D" type="Node" parent="StateMachine" index="1" unique_id=50757397]
+[node name="MinoFollow3D" type="Node" parent="StateMachine" index="1" unique_id=50757397 node_paths=PackedStringArray("SearchState", "PursueState", "IdleState")]
 script = ExtResource("5_5vwer")
+SearchState = NodePath("../MinoSearch3D")
+PursueState = NodePath("../MinoPursue3D")
+IdleState = NodePath("../MinoIdle3D")
 metadata/_custom_type_script = "uid://b0h2k0e2o3w0f"
 
-[node name="MinoPursue3D" type="Node" parent="StateMachine" index="2" unique_id=1338381383]
+[node name="MinoPursue3D" type="Node" parent="StateMachine" index="2" unique_id=1338381383 node_paths=PackedStringArray("SearchState", "IdleState", "FollowState")]
 script = ExtResource("6_wlolp")
+SearchState = NodePath("../MinoSearch3D")
+IdleState = NodePath("../MinoIdle3D")
+FollowState = NodePath("../MinoFollow3D")
 metadata/_custom_type_script = "uid://ckeco28pf1a1a"
 
-[node name="MinoSearch3D" type="Node" parent="StateMachine" index="3" unique_id=1626752908]
+[node name="MinoSearch3D" type="Node" parent="StateMachine" index="3" unique_id=1626752908 node_paths=PackedStringArray("IdleState", "PursueState", "FollowState")]
 script = ExtResource("6_5vwer")
+IdleState = NodePath("../MinoIdle3D")
+PursueState = NodePath("../MinoPursue3D")
+FollowState = NodePath("../MinoFollow3D")
 metadata/_custom_type_script = "uid://if138mqytby0"
 
 [node name="IdleTimer" type="Timer" parent="StateMachine" index="4" unique_id=1482463276]
+one_shot = true
 
 [node name="FollowTimer" type="Timer" parent="StateMachine" index="5" unique_id=1860648953]
 wait_time = 0.5

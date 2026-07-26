@@ -7,14 +7,17 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_woe1u"]
 
-[node name="MinotaurScene3d" type="CharacterBody3D" unique_id=560275607]
+[node name="MinotaurScene3d" type="CharacterBody3D" unique_id=560275607 node_paths=PackedStringArray("PursueState", "FollowState")]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_woe1u")
+PursueState = NodePath("mino/StateMachine/MinoPursue3D")
+FollowState = NodePath("mino/StateMachine/MinoFollow3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1778451585]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.1658132, 0)
 shape = SubResource("CapsuleShape3D_woe1u")
+disabled = true
 
 [node name="mino" parent="." unique_id=997227101 instance=ExtResource("2_he2e2")]
 
@@ -33,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 3)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1393122268]
 shape = SubResource("BoxShape3D_woe1u")
 
+[connection signal="timeout" from="mino/StateMachine/FollowTimer" to="." method="_on_follow_timer_timeout"]
 [connection signal="timeout" from="SearchTimer" to="." method="_on_search_timer_timeout"]
 [connection signal="timeout" from="DistractTimer" to="." method="_on_distract_timer_timeout"]
 

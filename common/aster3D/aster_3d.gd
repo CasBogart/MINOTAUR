@@ -25,3 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			lantern.omni_range = 0.0
 		elif Input.is_action_just_released("lantern_interact") and not lantern.omni_range == 10.0:
 			lantern.omni_range = 10.0
+
+func player_escape():
+	pass
+
+func lose():
+	pass

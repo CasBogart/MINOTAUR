@@ -5,7 +5,7 @@ class_name MinoFollow3D extends State
 @export var IdleState: State
 
 @onready var follow_timer: Timer = $"../FollowTimer"
-var run_speed: int = 1300
+var run_speed: int = 5000
 
 func enter():
 	parent.anim_player.play("follow")
@@ -19,8 +19,9 @@ func process_input(_event: InputEvent) -> State:
 func process_physics(delta) -> State:
 	if not parent.nav_agent.is_navigation_finished():
 		var nav_point_direction = parent.to_local(parent.nav_agent.get_next_path_position()).normalized()
-		parent.velocity.x = nav_point_direction.x * run_speed * delta
-		parent.velocity.z = nav_point_direction.y * run_speed * delta
+		parent.velocity.x = -nav_point_direction.x * run_speed * delta
+		parent.velocity.z = -nav_point_direction.y * run_speed * delta
+		parent.rotation.y = rotate_toward(parent.rotation.y, Vector2(nav_point_direction.y, nav_point_direction.x).angle(), 5 * delta)
 	elif parent.nav_agent.is_navigation_finished():
 		return IdleState
 	

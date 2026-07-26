@@ -9,7 +9,7 @@ class_name MinoIdle3D extends State
 func enter():
 	parent.velocity = Vector3(0, 0, 0)
 	parent.anim_player.play("idle")
-	idle_timer.start(1)
+	idle_timer.start(3.5)
 
 func exit():
 	pass

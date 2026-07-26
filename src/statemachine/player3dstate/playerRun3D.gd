@@ -22,7 +22,7 @@ func process_physics(delta) -> State:
 			return WalkState
 		parent.velocity.x = input_dir.x * 150 * delta
 		parent.velocity.z = input_dir.y * 150 * delta
-		parent.rotation.y = rotate_toward(parent.rotation.y, Vector2(-input_dir.y, -input_dir.x).angle(), 5 * delta)
+		parent.rotation.y = rotate_toward(parent.rotation.y, Vector2(-input_dir.y, -input_dir.x).angle(), 10 * delta)
 	else:
 		return IdleState
 	

@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
-	#raycast.target_position = (get_tree().get_first_node_in_group("minotarget").position - self.position)
+	raycast.target_position = (get_tree().get_first_node_in_group("minotarget").position - self.position)
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -45,12 +45,12 @@ func _on_distract_timer_timeout() -> void:
 
 func _on_follow_timer_timeout() -> void:
 	if Flags.player_run_state:
-		nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").position
+		nav_agent.target_position = get_tree().get_first_node_in_group("minotarget").global_position
 
 func player_follow_3D(pos: Vector3):
 	follow_timer.start()
 	if not state_machine.current_state == PursueState and not state_machine.current_state == FollowState:
 		state_machine.change_state(FollowState)
-	nav_agent.target_position = pos
+	nav_agent.target_position = Vector3(pos.x, 0, pos.z) - self.position
 
 # still need gameover
