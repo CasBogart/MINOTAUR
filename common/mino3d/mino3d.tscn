@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c87tcuqe2cwad"]
 
 [ext_resource type="PackedScene" uid="uid://bfmuy7lsuvam0" path="res://common/mino3d/mino.glb" id="1_ipmei"]
-[ext_resource type="Script" uid="uid://cygpqh6dlaivy" path="res://common/mino3d/mino3d.gd" id="2_52noi"]
 [ext_resource type="Script" uid="uid://bmy4fljjiwts2" path="res://src/statemachine/stateMachine.gd" id="3_akby6"]
 [ext_resource type="Script" uid="uid://di3dueafs3utu" path="res://src/statemachine/mino3dstate/minoIdle3D.gd" id="4_107i7"]
 [ext_resource type="Script" uid="uid://b0h2k0e2o3w0f" path="res://src/statemachine/mino3dstate/minoFollow3D.gd" id="5_5vwer"]
@@ -12,37 +11,33 @@ albedo_color = Color(1, 0, 0, 1)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akby6"]
-radius = 1.5
-height = 6.0
+[node name="mino" unique_id=1224381015 instance=ExtResource("1_ipmei")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
-[node name="mino" unique_id=997227101 instance=ExtResource("1_ipmei")]
-script = ExtResource("2_52noi")
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2050846268) index="0" unique_id=307459624]
+bones/0/position = Vector3(5.2505173e-05, -0.0116227865, -1.9836203)
+bones/0/rotation = Quaternion(-0.57240003, -0.027749863, 0.029620677, 0.81896937)
+bones/1/rotation = Quaternion(0.08321085, 0.44193473, 0.8930172, -0.017027821)
+bones/2/rotation = Quaternion(-0.6258648, -0.033254355, 0.020006612, 0.7789654)
+bones/3/rotation = Quaternion(0.6281354, 0.105907395, -0.10007099, 0.76433986)
+bones/4/rotation = Quaternion(0.40687403, 0.26714733, -0.020629281, 0.8733042)
+bones/6/rotation = Quaternion(-0.12858355, 0.2959577, 0.9464111, 0.013468742)
+bones/7/rotation = Quaternion(-0.45250693, -0.17532332, 0.10596958, 0.8679112)
+bones/8/rotation = Quaternion(0.71744144, -0.20399794, -0.04249299, 0.6647233)
+bones/9/rotation = Quaternion(0.28795826, -0.25957447, 0.0484465, 0.9205184)
+bones/11/rotation = Quaternion(0.17402148, 0.042091023, 0.025897162, 0.9835011)
+bones/12/rotation = Quaternion(0.14369407, -0.014181484, 0.042176552, 0.9886213)
+bones/13/rotation = Quaternion(0.14500599, -0.011262628, 0.03802856, 0.98863554)
+bones/14/rotation = Quaternion(-0.5827974, -0.42870516, 0.5645272, -0.39732623)
+bones/15/rotation = Quaternion(0.1919181, 0.0036820257, 0.23429419, 0.9530269)
+bones/16/rotation = Quaternion(0.028585117, -0.0002286234, 0.404545, 0.9140712)
+bones/18/rotation = Quaternion(-0.3881764, 0.1272338, -0.15333366, 0.8997885)
+bones/19/rotation = Quaternion(-0.05271882, -0.12736511, 0.08240643, 0.9870198)
+bones/21/rotation = Quaternion(0.57131875, -0.43206468, 0.55098516, 0.42817113)
+bones/22/rotation = Quaternion(0.07079255, 0.19978869, -0.3935066, 0.8945533)
+bones/23/rotation = Quaternion(0.025446737, 0.00011321483, -0.35554367, 0.9343133)
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1359290851) index="0" unique_id=456041630]
-bones/0/position = Vector3(0.014033828, -0.31718087, -2.0788572)
-bones/0/rotation = Quaternion(-0.62640274, -0.052853256, 0.008048968, 0.77766407)
-bones/1/rotation = Quaternion(-0.009793792, -0.21661052, 0.97524446, 0.04338483)
-bones/2/rotation = Quaternion(-0.16673405, -0.0036439067, -0.018093562, 0.9858292)
-bones/3/rotation = Quaternion(0.40836096, 0.019986957, -0.17651996, 0.8953674)
-bones/4/rotation = Quaternion(0.22809872, 0.23263113, -0.063419536, 0.94330895)
-bones/6/rotation = Quaternion(-0.006119189, 0.40146077, 0.9137232, -0.06246411)
-bones/7/rotation = Quaternion(-0.14589724, 0.0023202256, 0.017795866, 0.989137)
-bones/8/rotation = Quaternion(0.51814234, -0.115359694, 0.12354193, 0.838426)
-bones/9/rotation = Quaternion(0.29053652, -0.26081327, 0.04663813, 0.9194509)
-bones/11/rotation = Quaternion(-0.027712932, -0.013779274, 0.0036440198, 0.99951434)
-bones/12/rotation = Quaternion(0.016210254, -0.026760317, 0.008819973, 0.99947155)
-bones/13/rotation = Quaternion(0.016210262, -0.026760288, 0.0088199675, 0.99947155)
-bones/14/rotation = Quaternion(-0.5333517, -0.4633535, 0.53940445, -0.45812917)
-bones/15/rotation = Quaternion(0.11640261, -0.07138597, 0.46290562, 0.875827)
-bones/16/rotation = Quaternion(0.029167963, -0.00044265582, 0.4121781, 0.9106363)
-bones/18/rotation = Quaternion(0.020592367, -0.0045860643, 0.037035543, 0.9990912)
-bones/19/rotation = Quaternion(-0.087237306, 0.0699282, 0.003742992, 0.99372315)
-bones/21/rotation = Quaternion(0.5335746, -0.46315935, 0.53923297, 0.45826796)
-bones/22/rotation = Quaternion(0.18457209, 0.17623673, -0.20559748, 0.94477695)
-bones/23/rotation = Quaternion(0.032914568, 0.000602468, -0.46351543, 0.88547724)
-
-[node name="minomodel" parent="Armature/Skeleton3D" index="0" unique_id=811554219]
+[node name="minomodel" parent="Armature/Skeleton3D" index="0" unique_id=1512867746]
 surface_material_override/0 = SubResource("StandardMaterial3D_5vwer")
 
 [node name="StateMachine" type="Node" parent="." index="2" unique_id=646827052 node_paths=PackedStringArray("INITIAL_STATE")]
@@ -62,10 +57,4 @@ metadata/_custom_type_script = "uid://b0h2k0e2o3w0f"
 script = ExtResource("6_wlolp")
 metadata/_custom_type_script = "uid://ckeco28pf1a1a"
 
-[node name="Area3D" type="Area3D" parent="." index="3" unique_id=300390743]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.97527, -0.026084423)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=2126086152]
-shape = SubResource("CapsuleShape3D_akby6")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="4" unique_id=1757935562]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3" unique_id=1757935562]
