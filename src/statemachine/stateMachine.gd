@@ -54,6 +54,7 @@ func change_state(new_state: State):
 	
 	current_state = new_state
 	
+	# testing only, just find out mino current state
 	if not $"..".is_in_group("minotarget"):
 		print(current_state)
 	

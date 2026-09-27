@@ -5,7 +5,7 @@ class_name MinoPursue extends State
 @export var FollowState: State
 
 @onready var pursueTimer: Timer = $"../PursueTimer"
-var run_speed: int = 1000 + (Flags.level * 150)
+var run_speed: int = 1300
 
 func enter():
 	if Flags.level == 3:

@@ -116,7 +116,7 @@ animations = [{
 
 [sub_resource type="Gradient" id="Gradient_aaelh"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0.26431718, 0.6982379)
+offsets = PackedFloat32Array(0.26431718, 0.4581498)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w5ep6"]
