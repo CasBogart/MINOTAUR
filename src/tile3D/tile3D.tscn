@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bkldyiopv7x5u"]
+
+[ext_resource type="Texture2D" uid="uid://dtu6h0wmdv5r0" path="res://src/tile.png" id="1_w0dr6"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4dt87"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p46tg"]
+albedo_texture = ExtResource("1_w0dr6")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w0dr6"]
+material = SubResource("StandardMaterial3D_p46tg")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4dt87"]
+size = Vector3(2, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gronl"]
+albedo_texture = ExtResource("1_w0dr6")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0dr6"]
+material = SubResource("StandardMaterial3D_gronl")
+size = Vector3(2, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm5tp"]
+albedo_texture = ExtResource("1_w0dr6")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_p46tg"]
+material = SubResource("StandardMaterial3D_dm5tp")
+size = Vector3(2, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wedsm"]
+albedo_texture = ExtResource("1_w0dr6")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_gronl"]
+material = SubResource("StandardMaterial3D_wedsm")
+size = Vector3(2, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ni50"]
+albedo_texture = ExtResource("1_w0dr6")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dm5tp"]
+material = SubResource("StandardMaterial3D_6ni50")
+size = Vector3(2, 3, 0.5)
+
+[node name="Tile3d" type="Area3D" unique_id=1978198885]
+
+[node name="Floor" type="CollisionShape3D" parent="." unique_id=2089055140]
+shape = SubResource("WorldBoundaryShape3D_4dt87")
+
+[node name="Floor Mesh" type="MeshInstance3D" parent="Floor" unique_id=643104060]
+mesh = SubResource("PlaneMesh_w0dr6")
+
+[node name="WallN" type="CollisionShape3D" parent="." unique_id=1921924112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.25)
+shape = SubResource("BoxShape3D_4dt87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallN" unique_id=1631192237]
+mesh = SubResource("BoxMesh_w0dr6")
+
+[node name="WallS" type="CollisionShape3D" parent="." unique_id=2025289545]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.5, 1.25)
+shape = SubResource("BoxShape3D_4dt87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallS" unique_id=869550418]
+mesh = SubResource("BoxMesh_p46tg")
+
+[node name="WallE" type="CollisionShape3D" parent="." unique_id=433226030]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.25, 1.5, 0)
+shape = SubResource("BoxShape3D_4dt87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallE" unique_id=1752518412]
+mesh = SubResource("BoxMesh_gronl")
+
+[node name="WallW" type="CollisionShape3D" parent="." unique_id=617069724]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.25, 1.5, 0)
+shape = SubResource("BoxShape3D_4dt87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallW" unique_id=2001403174]
+mesh = SubResource("BoxMesh_dm5tp")

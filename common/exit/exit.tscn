@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c4obf3sh13v7d"]
 
 [ext_resource type="Texture2D" uid="uid://no6712l1o4im" path="res://src/gen_tiles.png" id="1_exfvm"]
+[ext_resource type="Texture2D" uid="uid://dtu6h0wmdv5r0" path="res://src/tile.png" id="2_3miut"]
 [ext_resource type="Script" uid="uid://bn82gnqsgrc3h" path="res://common/exit/exit.gd" id="2_tm0di"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3miut"]
@@ -9,13 +10,18 @@ texture = ExtResource("1_exfvm")
 1:0/0 = 0
 2:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hnuh"]
+texture = ExtResource("2_3miut")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_6hnuh"]
 sources/0 = SubResource("TileSetAtlasSource_3miut")
+sources/1 = SubResource("TileSetAtlasSource_6hnuh")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exfvm"]
 
 [node name="Exit" type="TileMapLayer" unique_id=197649986]
-tile_map_data = PackedByteArray("AAAAAAEAAAACAAAAAAABAAEAAAACAAAAAAACAAEAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAFAAEAAAACAAAAAAAGAAEAAAACAAAAAAAHAAEAAAACAAAAAAAIAAEAAAACAAAAAAAJAAEAAAACAAAAAAAKAAEAAAACAAAAAAALAAEAAAACAAAAAAAMAAEAAAACAAAAAAANAAEAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAFAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAALAAEAAQAAAAAAAAAMAAEAAQAAAAAAAAANAAEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_6hnuh")
 script = ExtResource("2_tm0di")
 
@@ -24,6 +30,7 @@ position = Vector2(10, 24)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=361498873]
+visible = false
 shape = SubResource("RectangleShape2D_exfvm")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

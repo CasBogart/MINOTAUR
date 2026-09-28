@@ -7,6 +7,8 @@ var here_before: bool = false
 var input_paused: bool = false
 var player_run_state: bool = false
 var exit_coords: Vector2
+var maze_data: Array
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

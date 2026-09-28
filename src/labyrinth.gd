@@ -51,6 +51,7 @@ func generate() -> labyrinth:
 	# draw the maze as an array, place an exit, draw the map
 	hunt_and_kill(map)
 	find_possible_exit(map)
+	Flags.maze_data = map
 	draw_map(map)
 	
 	# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ok now this just loads an empty screen sometimes?????

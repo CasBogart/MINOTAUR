@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://djjk5jqi2anwn"]
+
+[ext_resource type="Script" uid="uid://bp6kij4nnt6eg" path="res://src/labyrinth_3d.gd" id="1_qg24p"]
+
+[node name="Labyrinth3d" type="Node3D" unique_id=2127234221]
+script = ExtResource("1_qg24p")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1829059569]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1366718525]
+light_energy = 11.395
