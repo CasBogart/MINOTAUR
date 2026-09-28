@@ -9,11 +9,8 @@
 [ext_resource type="Script" uid="uid://bdg4sx6bwp0pv" path="res://src/statemachine/minotaur2dstate/minoFollow.gd" id="7_4nr3n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgclo"]
-radius = 4.0
-height = 12.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s5gt7"]
-radius = 100.0
+radius = 3.0
+height = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4nr3n"]
 radius = 6.0
@@ -48,16 +45,16 @@ texture = ExtResource("1_7tlxx")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1302296990]
 path_desired_distance = 5.0
-target_desired_distance = 15.0
+target_desired_distance = 5.0
 navigation_layers = 4
 path_postprocessing = 1
 simplify_path = true
-simplify_epsilon = 3.0
+simplify_epsilon = 0.25
 radius = 3.0
 avoidance_layers = 0
 avoidance_mask = 8
-debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
+debug_path_custom_line_width = 1.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=527447310 node_paths=PackedStringArray("INITIAL_STATE")]
 script = ExtResource("3_4a63y")
@@ -100,12 +97,6 @@ metadata/_custom_type_script = "uid://bdg4sx6bwp0pv"
 [node name="FollowTimer" type="Timer" parent="StateMachine" unique_id=662837446]
 wait_time = 0.5
 
-[node name="SearchArea" type="Area2D" parent="." unique_id=434927290]
-collision_layer = 256
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SearchArea" unique_id=447216319]
-shape = SubResource("CircleShape2D_s5gt7")
-
 [node name="SearchTimer" type="Timer" parent="." unique_id=1823164979]
 wait_time = 0.2
 
@@ -124,8 +115,6 @@ texture = SubResource("GradientTexture2D_7i6yl")
 
 [connection signal="timeout" from="StateMachine/IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="StateMachine/FollowTimer" to="." method="_on_follow_timer_timeout"]
-[connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
-[connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]
 [connection signal="timeout" from="SearchTimer" to="." method="_on_search_timer_timeout"]
 [connection signal="timeout" from="DistractTimer" to="." method="_on_distract_timer_timeout"]
 [connection signal="body_entered" from="DeadEndCollider" to="." method="_on_dead_end_collider_body_entered"]

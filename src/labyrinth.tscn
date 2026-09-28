@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://no6712l1o4im" path="res://src/gen_tiles.png" id="1_bnp2g"]
 [ext_resource type="Script" uid="uid://dn56s3sxvwitd" path="res://src/labyrinth.gd" id="1_iepnh"]
-[ext_resource type="Texture2D" uid="uid://bss3qjojsvvd1" path="res://src/tile.png" id="2_e2clf"]
+[ext_resource type="Texture2D" uid="uid://dtu6h0wmdv5r0" path="res://src/tile.png" id="2_e2clf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bnp2g"]
 resource_name = "Wall"
@@ -24,9 +24,16 @@ texture = ExtResource("1_bnp2g")
 2:0/0 = 0
 2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bnp2g")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e2clf"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ilt5k"]
 texture = ExtResource("2_e2clf")
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_e2clf")
 
 [sub_resource type="TileSet" id="TileSet_ilt5k"]
 occlusion_layer_0/light_mask = 1
