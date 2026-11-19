@@ -14,6 +14,10 @@ config/name="MINOTAUR"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://baufy3nf7tvkj"
+
 [debug]
 
 gdscript/warnings/unused_signal=0
