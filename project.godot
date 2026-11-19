@@ -11,14 +11,8 @@ config_version=5
 [application]
 
 config/name="MINOTAUR"
-run/main_scene="uid://ci8o7gvwp1ibm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-SignalBus="*uid://dlq7ikf60ys2k"
-Flags="*uid://d2d3vsw2y1fus"
 
 [debug]
 
@@ -35,7 +29,7 @@ mouse_cursor/custom_image_hotspot=Vector2(37, 57)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/psx_visuals_gd4/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 
