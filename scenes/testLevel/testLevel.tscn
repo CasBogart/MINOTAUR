@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d4i2x0weumod7"]
+
+[ext_resource type="Script" uid="uid://c2s3xhhrxb1bu" path="res://scenes/testLevel/testLevel.gd" id="1_eraeq"]
+
+[node name="TestLevel" type="TileMapLayer" unique_id=711862480]
+script = ExtResource("1_eraeq")
