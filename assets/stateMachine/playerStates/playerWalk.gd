@@ -6,7 +6,7 @@ class_name PlayerWalk extends State
 @export var walk_speed : float # walk speed
 
 func enter():
-	print("walk entered")
+	pass
 
 func exit():
 	pass
@@ -27,7 +27,6 @@ func process_physics(delta) -> State:
 		# move according to walkspeed
 		# "oh its good for frame rate issues" shut up i hate using delta time
 		parent.velocity = input_dir * walk_speed * delta
-		print(parent.velocity)
 	# if there's not an input direction return idlestate
 	else:
 		return IdleState

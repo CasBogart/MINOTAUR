@@ -6,7 +6,7 @@ class_name PlayerRun extends State
 @export var run_speed : float # run speed
 
 func enter():
-	print("run entered")
+	pass
 
 func exit():
 	pass
@@ -26,7 +26,6 @@ func process_physics(delta) -> State:
 			return WalkState
 		# move at new fun runspeed
 		parent.velocity = input_dir * run_speed * delta
-		print(parent.velocity)
 	# otherwise there's no input so you're idling
 	else:
 		return IdleState

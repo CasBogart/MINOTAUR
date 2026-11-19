@@ -4,3 +4,5 @@
 
 [node name="TestLevel" type="TileMapLayer" unique_id=711862480]
 script = ExtResource("1_eraeq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1897608313]

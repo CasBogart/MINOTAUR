@@ -6,7 +6,6 @@ class_name PlayerIdle extends State
 func enter():
 	# on entry, set velocity to zero
 	parent.velocity = Vector2(0, 0)
-	print("idle entered")
 
 func exit():
 	pass
